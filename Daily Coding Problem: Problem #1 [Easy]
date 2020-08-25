@@ -8,14 +8,29 @@
 
 
 
-list=[10, 15, 3, 7]
-def check(lst,k):
-    for i in range(0,len(lst)):
-        for j in range(1,len(lst)):
-            if lst[i]+lst[j]==k:
+Time Complexity: O(n)
+
+Space Complexity: O(n)
+
+Explaination:
+
+Every time we compute the difference, we check if the difference is present in the hash-table. 
+If the difference is present, we can return True and end the computation. If not, 
+we have not come across such element and add the current element to the hash-table. 
+At the end we will return False if no elements match the target sum k.
+
+
+class Solution:
+    def solve(self, nums, k):
+        # Write your code here
+        potential_solution=set()
+        for num in nums:
+            if num in potential_solution:
                 return True
+            potential_solution.add(k-num)
         return False
-print(check(list,17))
+
+
 
 
 

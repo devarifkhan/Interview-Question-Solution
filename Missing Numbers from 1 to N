@@ -1,0 +1,31 @@
+# You are given a list of integers nums of length n where all numbers in the list are from [1, n] and 
+# some elements appear twice while others only once. 
+# Return all the numbers from [1, n] that are not in the list, sorted in ascending order.
+
+# Can you do it in O(n) time, modify nums in-place and use O(1) additional space?
+
+
+
+Solution:
+
+The difference between the two sets in Python is equal to the difference between the number of elements in two sets. Set() also removes duplicates number from list.
+
+That's why i am using set.
+I need two set only.
+
+First set will generate list based on length and second set will be the numbers.
+After that i have to subtract and make a list.
+
+A - B is equal to the elements present in A but not in B.
+
+Thanks.
+
+class Solution:
+    def solve(self, nums):
+        # Write your code here
+        listm=[i for i in range(1,len(nums)+1)]
+        return list(set(listm)-set(nums))
+
+
+
+

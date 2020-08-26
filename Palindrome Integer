@@ -1,0 +1,39 @@
+
+
+Given a non-negative integer num, return whether it is a palindrome.
+
+Bonus: Can you solve it without using strings?
+
+
+Solution:
+Now let us consider an algorithm for the Problem Statement: Find if a number is a Palindrome or not.
+
+Copy the input number in another variable so that we can compare them later.
+Next, we reverse the given number. To reverse the number follow these steps:
+    Isolate the last digit of a number. The modulo operator (%) returns the remainder of a division
+    Append rem to reverse. result= (result * 10) + rem.
+    Remove last digit from number. num = num // 10.
+    Iterate this process. while (num> 0)
+Now we compare the reversed number with the original number.
+If the numbers are the same, then the number is a palindrome ,else it is not
+
+Now that we have the algorithm let us convert it into code by following the similar logic.
+
+class Solution:
+    def solve(self, num):
+        # Write your code here
+        s=num
+        result=0
+        while(num>0):
+            rem=num%10
+            result=result*10+rem
+            num=num//10
+        
+        if result==s:
+            return True
+        return False
+
+        
+        
+
+

@@ -1,0 +1,26 @@
+
+
+#First we get take a character after that check how many times this character repeat .
+#If not skip the statement.Again check the next character .....same for all.
+#After that add it with character.
+
+class Solution:
+    def solve(self, s):
+        encoded_message = ''
+        i = 0
+        while (i <= len(s)-1):
+            count = 1
+            ch = s[i]
+            j = i
+            while (j < len(s)-1):
+                if (s[j] == s[j+1]):
+                    count = count+1
+                    j = j+1
+                else:
+                    break
+            encoded_message=encoded_message+str(count)+ch
+            i = j+1
+        return encoded_message
+        
+        
+

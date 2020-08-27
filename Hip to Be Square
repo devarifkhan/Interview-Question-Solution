@@ -1,0 +1,17 @@
+Given a sorted list of integers, square the elements and give the output in sorted order.
+
+Note: The integers can be 0 or negative.
+
+
+Solution:
+
+
+
+use abs to make number positive and use a for loop to multiply the numbers.
+Sorted the list and returned it .
+
+class Solution:
+    def solve(self, nums):
+        # Write your code here
+        return sorted([abs(i*i) for i in nums])
+

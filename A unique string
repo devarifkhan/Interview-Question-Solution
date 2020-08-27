@@ -1,0 +1,29 @@
+
+
+Given a string s, determine whether it has all unique characters.
+
+
+
+
+
+
+
+solution:
+
+I First take the string using set remove the duplicate words .
+Now it becomes a set so i have make it a string again. I use join() function to make again a string.
+now check the length between two string if they are same True that means no duplicates otherwise False.
+
+Thanks
+
+class Solution:
+    def solve(self, s):
+        # Write your code here
+        GString=s
+        Rduplicate=set(GString)
+        JRDuplicate=''.join(Rduplicate)
+        if len(GString)==len(JRDuplicate):
+            return True
+        else:
+            return False
+

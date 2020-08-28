@@ -1,0 +1,24 @@
+
+
+Given a positive integer n, sum all of its digits to get a new number. Repeat this operation until it's less than 10.
+Example 1
+
+Input
+
+n = 8835
+
+Output
+
+6
+
+Solution:
+
+
+I have to get the remainder with recursion until its greater than 0 and add +1 with it.
+
+class Solution:
+    def solve(self, n):
+        # Write your code here
+        return (n-1)%9+1
+
+

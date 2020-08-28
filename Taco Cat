@@ -1,0 +1,33 @@
+Given a string s, return whether it is a palindrome. A palindrome is when the word is the same forwards and backwards.
+
+For example, "tacocat" is a palindrome.
+Example 1
+
+Input
+
+s = "racecar"
+
+Output
+
+True
+
+
+
+
+Solution:
+
+
+
+I reversed a string using slice in python.
+check with the input if it it equal or not.
+
+class Solution:
+    def solve(self, s):
+        # Write your code here
+        if s==s[::-1]:
+            return True
+        else:
+            return False
+
+
+

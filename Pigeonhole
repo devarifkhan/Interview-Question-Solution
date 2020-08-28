@@ -1,0 +1,39 @@
+You are given a list nums of length n + 1 picked from the range 1, 2, ..., n. By the pigeonhole principle, there must be a duplicate. Find and return it. There is guaranteed to be exactly one duplicate.
+
+Bonus: Can you do this in linear time and constant space?
+
+Constraints
+
+    n ≤ 100,000
+
+Example 1
+
+Input
+
+nums = [1, 2, 3, 1]
+
+Output
+
+1
+
+
+Solution:
+
+
+
+
+I use a set to ensure that if there is any duplicates number.
+if has than return it
+otherwise add it to set.
+
+class Solution:
+    def solve(self, nums):
+        # Write your code here
+        seen = set()
+        for num in nums:
+            if num in seen:
+                return num
+            seen.add(num)
+            
+            
+

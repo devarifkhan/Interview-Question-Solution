@@ -1,0 +1,34 @@
+Given a list of integers nums, find the most frequently occurring element and return the number of occurrences of that element.
+
+For example, given the list [1, 4, 1, 7, 1, 7, 1, 1], return 5 since the the element 1 appears 5 times.
+Example 1
+
+Input
+
+nums = [1, 4, 1, 7, 1, 7, 1, 1]
+
+Output
+
+5
+
+
+Solution:
+
+
+I have use an dict to count the frequency of a number.
+Initially if the the has available number = 1.If i found again then 2.
+Finally returned the maximum value.
+
+class Solution:
+    def solve(self, nums):
+        # Write your code here
+        freq = {}
+        for item in nums:
+            if (item in freq):
+                freq[item] += 1
+            else:
+                freq[item] = 1
+    
+    
+        return max(freq.values())
+

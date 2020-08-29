@@ -1,0 +1,44 @@
+
+Given an integer n greater than or equal to 0, return the number of 1 bits in n.
+Example 1
+
+Input
+
+n = 0
+
+Output
+
+0
+
+Example 2
+
+Input
+
+n = 1
+
+Output
+
+1
+
+
+Solution:
+
+
+
+First i convert it to a binary number
+After that make a list of binary number.
+Now make a new List.
+If binary number equal to 1 add it to new list.Finally return the length of it.
+
+class Solution:
+    def solve(self, n):
+        # Write your code here
+        BinaryRep = bin(n)
+        list = [i for i in BinaryRep]
+        NList = []
+        for i in list:
+            if i == '1':
+                NList.append(i)
+        return len(NList)
+        
+   

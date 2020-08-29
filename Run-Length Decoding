@@ -1,0 +1,47 @@
+Run-length encoding is a fast and simple method of encoding strings. The basic idea is to represent
+repeated successive characters as a single count and character. For example, the string "AAAABBBCCDAA" would
+be encoded as "4A3B2C1D2A".
+
+Given a string s that's a run-length encoded string, return its decoded version.
+
+Note: The original string is guaranteed not to have numbers in it.
+Example 1
+
+Input
+
+s = "4A3B2C1D2A"
+
+Output
+
+"AAAABBBCCDAA"
+
+
+Solution:
+
+
+First i check the check length of that string if its less than inside the loop check if the number is there .
+If there add it with first.Increment the index and check again .
+
+If found add it otherwise check for character .After that multiply with number and return it.
+If not found .Increment the index and check again.
+
+class Solution:
+    def solve(self, text):
+        # Write your code here
+        DecodedString=''
+        index=0
+
+        if text!='':
+            while(index<len(text)):
+                first=""
+                while(text[index] in '0123456789'):
+                    first+=text[index]
+                    index+=1
+                num=int(first)
+    
+                ch=text[index]
+                index+=1
+    
+                DecodedString+=ch*num
+            return DecodedString
+

@@ -1,0 +1,26 @@
+Given an integer n greater than or equal to 0, return whether it is a power of two.
+Example 1
+
+Input
+
+n = 0
+
+Output
+
+False
+
+
+Solution:
+
+
+I have use python build in math log() function. That's works for me.
+
+import math
+class Solution:
+    def solve(self, n):
+        # Write your code here
+        if n==0:
+            return False
+        return math.log(n,2).is_integer()
+        
+

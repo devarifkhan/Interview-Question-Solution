@@ -1,0 +1,43 @@
+Given a list of integers nums, a string op representing either "+", "-", "/", or "*", and an
+integer val, perform the operation on every number in nums with val and return the result.
+
+Note: "/" is integer division.
+Example 1
+
+Input
+
+nums = [3, 1, 6]
+op = "+"
+val = 4
+
+Output
+
+[7, 5, 10]
+
+Explanation
+
+We add 4 to every number in nums and return it.
+
+
+Solution:
+
+
+
+I just use if else condition
+if op match to '+' than the for loop to add the elements with it
+if op match to '-' than the for loop to subtract the elements with it
+The two condition left they are also same.
+
+class Solution:
+    def solve(self, nums, op, val):
+        # Write your code here
+        if op=='+':
+            return [i+val for i in nums]
+        elif op=='-':
+            return [i-val for i in nums]
+        elif op=='*':
+            return [val*i for i in nums]
+        else:
+            return [i//val for i in nums]
+            
+

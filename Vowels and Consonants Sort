@@ -1,0 +1,36 @@
+Given a lowercase alphabet string s, return a string with all the vowels of s in sorted order followed by all the consonants of s in sorted order.
+
+Note: vowels are ["a", "e", "i", "o", "u"] and consonants are all other characters.
+
+Constraints
+
+    Length of s ≤ 50000
+
+Example 1
+
+Input
+
+s = "decalin"
+
+Output
+
+"aeicdln"
+
+Solution:
+
+
+
+First i sort the list after that get the vowels and constants
+add them using join method
+
+class Solution:
+    def solve(self, s):
+        # Write your code here
+        s = sorted(s)
+        vowels=["a", "e", "i", "o", "u"]
+        vowel=[i for i in s if i in vowels]
+        constants=[i for i in s if i not in vowels]
+        addBoth=vowel+constants
+        return ''.join(addBoth)
+        
+

@@ -1,0 +1,22 @@
+Given a string of words delimited by spaces, reverse the order of words. For example, given "hello there my friend", return "friend my there hello".
+Example 1
+
+Input
+
+sentence = "hello there my friend"
+
+Output
+
+"friend my there hello"
+
+
+Solution:
+
+
+First i split the sentence and reverse that after that using join method add them all with a space before adding.
+
+class Solution:
+    def solve(self, sentence):
+        # Write your code here
+        return ' '.join(sentence.split()[::-1])
+

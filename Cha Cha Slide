@@ -1,0 +1,50 @@
+Given two strings s0 and s1, determine if one is a rotation of the other.
+
+Constraints
+
+    Length of s0 is at most 5000.
+    Length of s1 is at most 5000.
+
+Example 1
+
+Input
+
+s0 = "Cattywampus"
+s1 = "sCattywampu"
+
+Output
+
+True
+
+
+Solution:
+First i check for the length if lengths are not same then its can not be rotate.
+After that i take a loop and rotate x by 1 check is it equal to Y.
+If same then its rotation is possible otherwise not.
+
+class Solution:
+    def solve(self, X, Y):
+        # Write your code here
+        
+        m = len(X)
+    
+        # if lengths are different, they can't be
+        # derived from each other
+        if m != len(Y):
+            return False
+    
+        # Invariant : At i'th iteration of this loop,
+        # X will be rotated by i units
+        for i in range(m):
+    
+            # left rotate X by 1 unit
+            X = X[1:] + X[0]
+    
+            # return true if X becomes equal to Y
+            if X == Y:
+                return True
+    
+        # return false if no rotation is matched
+        return False
+
+

@@ -1,0 +1,29 @@
+Given a string s, representing a sentence, return whether every letter (case-insensitive) of the alphabet is used at least once.
+Example 1
+
+Input
+
+s = "A quick brown fox jumps over the lazy dog"
+
+Output
+
+True
+
+
+Solution:
+
+I use the ASCII lowercase value form a to z and also a set of it.
+Again make a set of user string.
+Now check it greater or equal because if set removes duplicate now 
+if all the ASCII value have in user string it can be greater or equal 
+ here can be value from A to Z.
+Code
+
+
+
+import string
+class Solution:
+    def solve(self, s):
+        # Write your code here
+        return set(s.lower())>=set(string.ascii_lowercase)
+

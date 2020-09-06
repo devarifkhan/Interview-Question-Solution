@@ -1,0 +1,25 @@
+Given two strings a and b that represent binary numbers, add them and return their sum, also as a string.
+
+The input strings are guaranteed to be non-empty and contain only 1s and 0s.
+Example 1
+
+Input
+
+a = "1"
+b = "1"
+
+Output
+
+"10"
+
+
+Solution:
+Use int() and bin() to add two binary numbers in Python
+
+Convert each of the binary operands into integers using int(number, 2). Add the integers together and use bin(sum) to convert the integer sum back to a binary string.
+
+class Solution:
+    def solve(self, a, b):
+        # Write your code here
+        return bin(int(a,2) + int(b,2))[2:]
+

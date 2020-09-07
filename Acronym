@@ -1,0 +1,21 @@
+Given a string s representing a phrase, return its acronym. Acronyms should be capitalized and should not include the word "and".
+Example 1
+
+Input
+
+s = "For your information"
+
+Output
+
+"FYI"
+
+
+Solution:
+
+First make a list and don't add and in this list and get the first index of all string and add it with make it capital.
+
+class Solution:
+    def solve(self, s):
+        # Write your code here
+        return ''.join([i[0] for i in s.split() if i!='and']).upper()
+

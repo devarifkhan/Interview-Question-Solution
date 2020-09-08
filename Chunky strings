@@ -1,0 +1,20 @@
+Given a string s and an integer n, split up s into n-sized pieces.
+
+For example, given:
+
+s = "abcdefg"
+n = 3
+
+Return ["abc", "def", "g"].
+
+If there are extra characters left over, they should be in its own piece.
+
+Solution:
+
+I use a list and run a for loop 0 to n using slice make a string chunks every time.
+
+class Solution:
+    def solve(self, s, n):
+        # Write your code here
+        return [s[i:i+n] for i in range(0, len(s), n)]
+

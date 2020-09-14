@@ -1,0 +1,47 @@
+Given a string s, representing a 12-hour clock time with am/pm, return its 24-hour equivalent.
+
+Example 1
+Input
+
+s = "05:30pm"
+Output
+
+"17:30"
+Example 2
+Input
+
+s = "03:00am"
+Output
+
+"03:00"
+Example 3
+Input
+
+s = "12:00pm"
+Output
+
+"12:00"
+
+
+
+
+Solution:
+
+
+First i get the remainder of hours and add 12 with it if it is pm.
+Make no change about minutes.
+
+Add additional one zero before hours and minutes for padding with left alignment.
+
+class Solution:
+    def solve(self, s):
+        # Write your code here
+        hour = int(s[:2]) % 12
+        minutes = int(s[3:5])
+    
+        if 'pm' in s:
+            hour += 12
+    
+        return "{:02}:{:02}".format(hour, minutes)
+        
+        

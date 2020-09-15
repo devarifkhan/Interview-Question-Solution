@@ -1,0 +1,21 @@
+Given a list of strings words, concatenate the strings in camel case format.
+
+Example 1
+Input
+
+words = ["java", "beans"]
+Output
+
+"javaBeans"
+
+
+Solution:
+
+Make first string lower of a list add it with make capitalize of second string first character finally joined them together.
+
+class Solution:
+    def solve(self, words):
+        # Write your code here
+        return words[0].lower()+''.join([i.capitalize() for i in words[1:]])
+        
+        

@@ -1,0 +1,27 @@
+Given an integer n, return the maximum number you can make by inserting 5 anywhere in the number.
+
+Example 1
+Input
+
+n = 923
+
+Output
+
+9523
+
+
+Solution:
+Just try all possible insertions, note that you can't start at index 0
+if its negative because it will put a digit in front of the negative sign that why i use n<0
+
+class Solution:
+    def solve(self, n):
+        # Write your code here
+        strn=str(n)
+        list=[]
+        for i in range(n<0, len(strn) + 1):
+            l=int(strn[:i]+'5'+strn[i:])
+            list.append(l)
+        return max(list)
+        
+        

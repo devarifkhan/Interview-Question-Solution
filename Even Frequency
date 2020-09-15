@@ -1,0 +1,32 @@
+Given a list of integers nums, return whether all numbers appear an even number of times.
+
+This should be done in \mathcal{O}(1)O(1) space.
+
+Constraints
+
+n ≤ 100,000 where n is the length of nums
+Example 1
+Input
+
+nums = [2, 4, 4, 2, 3, 3]
+Output
+
+True
+Explanation
+
+Every number occurs twice.
+
+
+Solution:
+
+First sort the list check the is even or not and also check each pair is equal or not.
+
+class Solution:
+    def solve(self, nums):
+        # Write your code here
+        nums.sort()
+        return (
+            len(nums)%2==0 and all([nums[i]==nums[i+1] for i in range(0,len(nums),2)])
+        )
+        
+        

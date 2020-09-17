@@ -1,0 +1,28 @@
+You are given two strings s and t which both have length n. 
+You can pick one character in s and another in t and swap them. 
+Given you can make unlimited number of swaps, return whether it's possible to make the two strings equal.
+
+Example 1
+Input
+
+s = "ab"
+t = "ba"
+Output
+
+True
+
+
+
+Solution:
+
+count the frequency of each unique letter in the combination list of s and t
+
+if all frequencies are even, the two strings can be made to be same.
+
+class Solution:
+    def solve(self, s, t):
+        # Write your code here
+        st=s+t
+        return all([st.count(i)%2==0 for i  in set(st)])
+
+

@@ -1,0 +1,23 @@
+Given a list of integers, find the largest product of two distinct elements.
+
+Example 1
+Input
+
+nums = [5, 1, 7]
+Output
+
+35
+
+Solution:
+
+The final answer must be either the product of the two largest or two smallest (ie. potentially negative) values. 
+The most convenient way to get these extremal values is just to sort the array, 
+although we could also make a linear pass to get them in O(n) time.
+
+class Solution:
+    def solve(self, nums):
+        # Write your code here
+        nums.sort()
+        return max(nums[0]*nums[1],nums[-1]*nums[-2])
+        
+        

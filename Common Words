@@ -1,0 +1,28 @@
+Given two strings s0 and s1, each representing a sentence, return the number of unique words that are shared between the two sentences.
+
+Note: words are case-insensitive so "hello" and "Hello" are the same word.
+
+Example 1
+Input
+
+s0 = "hello world hello oyster"
+s1 = "world is your oyster"
+Output
+
+2
+
+
+Solution:
+
+First make those string lower and split it after that make set of both .
+Intersection both set to find common words.
+Finally return length of it.
+
+class Solution:
+    def solve(self, s0, s1):
+        # Write your code here
+        first = set(s0.lower().split())
+        second = set(s1.lower().split())
+        return len(first.intersection(second))
+        
+        

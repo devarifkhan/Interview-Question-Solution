@@ -1,0 +1,47 @@
+You are given a list of mailboxes. Each mailbox is a list of strings, where each string is either "junk", "personal", "work". Go through each mailbox in round robin order starting from the first one, filtering out junk, to form a single pile and return the pile.
+
+Example 1
+Input
+
+mailboxes = [
+    ["work", "personal"],
+    ["junk", "personal", "junk"],
+    ["work"]
+]
+Output
+
+["work", "work", "personal", "personal"]
+
+Solution:
+
+itertools.zip_longest will give us the mailboxes beside each other, with the shorter ones padded with 'None' items so they're all the same length.
+
+Example:
+
+[
+  ["a", "b", "c"],
+  ["q"],
+  ["x", "y"]
+]
+
+->
+
+[
+  ["a", "b", "c"],
+  ["q", None, None],
+  ["x", "y", None]
+]
+
+Now all we have to do is ignore 'None' items (falsy in Python) and items which are equal to "junk"
+
+
+
+import itertools
+class Solution:
+    def solve(self, mailboxes):
+        # Write your code here
+
+        return [l for i in itertools.zip_longest(*mailboxes) for l in i if l and l!='junk']
+        
+        
+        

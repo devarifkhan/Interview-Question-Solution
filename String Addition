@@ -1,0 +1,38 @@
+Given two strings a, and b, both representing an integer, add them and return it in the same string representation.
+
+Bonus: can you implement the addition directly, instead of using eval or built-in big integers?
+
+Constraints`
+
+n ≤ 200 where n is the length of a
+m ≤ 200 where m is the length of b
+Example 1
+Input
+
+a = "12"
+b = "23"
+Output
+
+"35"
+
+Solution:
+
+First get the equivalent int of it and sum of those.
+
+class Solution:
+    def solve(self, a, b):
+        # Write your code here
+
+        newa=0
+        for i in  a:
+            newa*=10
+            for d in '0123456789':
+                newa+=i>d
+        
+        newb=0
+        for i in  b:
+            newb*=10
+            for d in '0123456789':
+                newb+=i>d
+        total=newa+newb
+        return f'{total}'

@@ -1,0 +1,39 @@
+Given a list of integers nums, return whether there's two numbers such that one is a triple of another.
+
+Constraints
+
+n ≤ 100,000 where n is the length of nums.
+Example 1
+Input
+
+nums = [2, 3, 10, 7, 6]
+Output
+
+True
+
+Solution:
+
+We create a dictionary to hold values already looked at.
+
+For each new number, we can search to see:
+
+    if the number multiplied by 3 is in our dictionary. If so, return True
+    if the number is evenly divisible by 3, and the number divided by 3 is in the dictionary then return True
+
+Otherwise, if we get to the end of the values then the result is False
+
+
+class Solution:
+    def solve(self, nums):
+        # Write your code here
+        dict={}
+        for i in nums:
+            if i*3 in dict:
+                return True
+            if i%3==0 and i//3 in dict:
+                return True
+            if i not in dict:
+                dict[i]=i
+        return False
+        
+        

@@ -1,0 +1,67 @@
+Given a list of integers nums and an integer k, find three distinct entries in nums, a, b, c, such that abs(a + b + c - k) is minimized and return the absolute difference.
+
+Constraints
+
+n ≤ 1,000 where n is length of nums.
+Example 1
+Input
+
+nums = [2, 4, 25, 7]
+k = 15
+Output
+
+2
+
+
+Solution:
+
+Algorithm:
+
+Sort the given array.
+Loop over the array and fix the first element of the possible triplet, arr[i].
+Then fix two pointers, one at i + 1 and the other at n – 1. And look at the sum,
+If the sum is smaller than the sum we need to get to, we increase the first pointer.
+Else, If the sum is bigger, Decrease the end pointer to reduce the sum.
+Update the closest sum found so far.
+
+Complexity Analysis:
+
+Time complexity: O(N2).
+There are only two nested loops traversing the array, so time complexity is O(n^2).
+Two pointer algorithm take O(n) time and the first element can be fixed using another nested traversal.
+Space Compelxity: O(1).
+As no extra space is required.
+
+import sys
+class Solution:
+    def solve(self, nums, k):
+        # Write your code here
+        
+        nums.sort()
+        closestSum = sys.maxsize
+        
+        for i in range(len(nums) - 2):
+    
+    
+            ptr1 = i + 1
+            ptr2 = len(nums) - 1
+    
+    
+            while (ptr1 < ptr2):
+    
+    
+                sum = nums[i] + nums[ptr1] + nums[ptr2]
+    
+                if (abs(k - sum) < abs(k - closestSum)):
+                    closestSum = sum
+    
+                if (sum > k):
+                    ptr2 -= 1
+    
+                else:
+                    ptr1 += 1
+    
+    
+        return abs(k-closestSum)
+        
+        

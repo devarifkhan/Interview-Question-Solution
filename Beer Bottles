@@ -1,0 +1,30 @@
+You are given an integer n representing n full beer bottles. Given that you can exchange 3 empty beer bottles for 1 full beer bottle, return the number of beer bottles you can drink.
+
+Example 1
+Input
+
+n = 9
+Output
+
+13
+
+Solution:
+
+While there are full bottles we drink them all.
+Then we put them to our empty bottles.
+Finally we can exchange each triplet of empty bottles for a tasty new full bottle.
+And the drinking goes on...
+Cheers!
+
+class Solution:
+    def solve(self, n):
+        # Write your code here
+        empty=0
+        drunk=0
+        while n:
+            drunk+=n
+            empty+=n
+            n=empty//3
+        
+            empty=empty%3
+        return drunk

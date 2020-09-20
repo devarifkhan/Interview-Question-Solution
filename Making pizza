@@ -1,0 +1,27 @@
+
+Given a lowercase alphabet string s, return how many "pizza" strings you can create using the characters in s. You can use the characters in s in any order, but you can only use each character once.
+
+Example 1
+Input
+
+s = "pihzzatpizza"
+Output
+
+2
+
+
+Solution:
+
+count the number of "p", "i", "z", "a" and divide number of "z" by 2 since 
+there are two "z" in the word "pizza" and return the minimum value of all these counts.
+
+class Solution:
+    def solve(self, s):
+        # Write your code here
+        p=s.count('p')
+        i=s.count('i')
+        z=s.count('z')
+        a=s.count('a')
+        return min(p,i,z//2,a)
+        
+        

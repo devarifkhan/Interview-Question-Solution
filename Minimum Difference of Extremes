@@ -1,0 +1,33 @@
+
+Given a list of integers nums, consider an operation where you update an element to any value. Given that you can perform at most 3 of these operations, return the resulting minimum difference between the max and the min value in nums.
+
+Constraints
+
+n ≤ 100,000 where n is the length of nums
+Example 1
+Input
+
+nums = [1, 2, 3, 4, 5, 6]
+Output
+
+2
+
+
+Solution:
+
+    Sort the array and take the min of the 4 pairs
+
+Complexity
+
+    Time: O(nlog⁡n)\mathcal{O}(n\log{n})O(nlogn)
+    Space: O(1)\mathcal{O}(1)O(1)
+
+class Solution:
+    def solve(self, nums):
+        # Write your code here
+        if len(nums) <= 4:
+            return 0
+        nums.sort()
+        return min([nums[-4 + i] - nums[i] for i in range(4)])
+        
+        

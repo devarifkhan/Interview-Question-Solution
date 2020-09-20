@@ -1,0 +1,28 @@
+
+Given a non-negative integer n, find a number r such that r * r = n and round down to the nearest integer.
+
+Can you implement this without using the built-in square root?
+
+Example 1
+Input
+
+n = 9
+Output
+
+3
+
+
+Solution:
+
+Python has exponentiation operator (**) which can be used to calculate power of a number.
+x **y returns x *raised to y i.e. y times multiplication of x. Since we need to calculate square root, y should be (1/2)
+
+The floor Function in Python is used to return the closest integer value which is less than or equal to given numeric value
+
+import math
+class Solution:
+    def solve(self, n):
+        # Write your code here
+        return math.floor(n**(1/2))
+        
+        

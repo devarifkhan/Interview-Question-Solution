@@ -1,0 +1,50 @@
+Given a string s, return whether it's an IPv4 address.
+
+IPv4 addresses must follow the format A.B.C.D, where A, B, C, and D are numbers between 0 and 255. Zero-prefixed numbers, such as 01 and 065, are not allowed, except for 0 itself.
+
+Example 1
+Input
+
+s = "0.0.0.0"
+Output
+
+True
+
+
+
+Solution:
+
+steps
+
+    split the string based on '.'
+    then count for the number of digits in it if less than 4 return False
+    loop over the digits:
+    is any character is not a digit return False
+    3)check if the number is in the given range
+
+tricky part:
+
+to check if the number has a zero prefix
+len(n)!=len(list(str(int(n))))
+convert the number to string and then check if it has any extra zeros by comparing it with the actual int() value of the number
+
+
+
+class Solution:
+    def solve(self, s):
+        # Write your code here
+        nums = s.split('.')
+        if len(nums) != 4:
+            return False
+        for n in nums:
+            if n.isdigit():
+                if int(n) not in range(0,256):
+                    return False
+                if len(n)!=len(str(int(n))):
+                    return False
+            else:
+                return False
+    
+        return True
+        
+        

@@ -1,0 +1,30 @@
+
+Given two strings s0 and s1, return whether they are anagrams of each other. Two words are anagrams when you can rearrange one to become the other. For example, "listen" and "silent" are anagrams.
+
+Constraints
+
+n ≤ 100,000 where n is the length of s0
+m ≤ 100,000 where m is the length of s1
+Example 1
+Input
+
+s0 = "listen"
+s1 = "silent"
+Output
+
+True
+
+
+
+Solution:
+
+Two strings are anagrams if and only if the count of their letters is equal. To count and compare counts quickly, we use the built in collections.Counter class.
+
+
+from collections import Counter
+
+class Solution:
+    def solve(self, s0, s1):
+        return Counter(s0) == Counter(s1)
+        
+        

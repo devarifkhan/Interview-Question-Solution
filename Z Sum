@@ -1,0 +1,31 @@
+Given an n by n integer matrix, return the sum of all elements that form a Z in the matrix. For example, given:
+
+1 2 3
+4 5 6
+7 8 9
+The Z that's formed is [1, 2, 3, 5, 7, 8, 9] and its sum is 35.
+
+Constraints
+
+n ≤ 1000
+Example 1
+Input
+
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+Output
+
+35
+
+Solution:
+
+In case the length of the matrix is 0, return 0.
+In case the length of the matrix is 1, return the only element present in the matrix.
+Else,
+Take an array a and append all the elements of the diagonal such that the elements of the first row and the last row are not included.
+The, append the sum of the elements of the first and the last row to the array, a.
+Finally, return the sum of the elements of the array, a.
+

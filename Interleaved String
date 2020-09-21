@@ -1,0 +1,28 @@
+Given two strings s0 and s1, return the two strings interleaved, starting with s0. If there are leftover characters in a string they should be added to the end.
+
+Example 1
+Input
+
+s0 = "abc"
+s1 = "xyz"
+Output
+
+"axbycz"
+
+Solution:
+
+Space: O(n), Time: O(n)
+
+    Create iterator of tuples of characters with zip_longest(). Extra character will be paired with empty string by setting fillvalue.
+    Flatten the iterator with chain.from_iterable().
+    Concatenate the flattened iterator into a single string with ''.join()
+
+
+from itertools import zip_longest
+class Solution:
+    def solve(self, s0, s1):
+        # Write your code here
+
+        return ''.join([i+j for i,j in zip_longest(s0,s1,fillvalue='')])
+        
+        

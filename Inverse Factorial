@@ -1,0 +1,28 @@
+The factorial of a number n is defined as n! = n * (n - 1) * (n - 2) * ... * 1.
+
+Given a positive integer a, return n such that n! = a. If there is no integer n that is a factorial, then return -1.
+
+Constraints
+
+n < 2 ** 31
+Example 1
+Input
+
+a = 6
+Output
+
+3
+
+Solution:
+
+We start multiplying cur = 1 * 2 * 3 * ... When we get to `cur >= target`, we stop. If `cur == target` then we were successful and output the answer.
+
+class Solution:
+    def solve(self, target):
+        cur = n = 1
+        while cur < target:
+            n += 1
+            cur *= n
+        return n if cur == target else -1
+
+

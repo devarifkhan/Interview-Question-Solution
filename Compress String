@@ -1,0 +1,27 @@
+Given a string s, eliminate consecutive duplicate characters from the string and return it.
+
+That is, if a list contains repeated characters, they should be replaced with a single copy of the character. The order of the elements should not be changed.
+
+Constraints
+
+n ≤ 100,000 where n is the length of s
+Example 1
+Input
+
+s = "aaaaaabbbccccaaaaddf"
+Output
+
+"abcadf"
+
+Solution:
+
+itertools.groupby groups the objects in an iterable by the given key function. Groups are accumulated as long as the keys are equivalent. If no key function is given, the identity of the items are used, in this case the characters.
+
+Once you have them grouped by their identity, you can then join the objects into a single string.
+
+import itertools
+class Solution:
+    def solve(self, s):
+        # Write your code here
+        return ''.join(g[0] for g in itertools.groupby(s))
+        

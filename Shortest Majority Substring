@@ -1,0 +1,38 @@
+Given a lowercase alphabet string s, return the length of the shortest substring of length at least 2 such that some letter appears more than the other letters combined. If there's no solution, return -1.
+
+Constraints
+
+n ≤ 100,000 where n is the length of s
+Example 1
+Input
+
+s = "abccde"
+Output
+
+2
+
+Solution:
+
+Given the constraints of the question, to match what we're looking for, somewhere in the string there must be:
+
+    A character followed by itself (e.g. aa)
+    or
+    A character followed by another, then itself (e.g. aba)
+
+We look for the shorter of the two - or neither.
+
+Notes:
+
+    Why can't we have abca?
+    Because then the total number of 'other' characters isn't less than the two we've matched. This is what leads us to the answer being either 2 or 3 characters in length.
+
+import re
+class Solution:
+    def solve(self, s):
+        # Write your code here
+        if re.search(r'(.)\1+',s):
+            return 2
+        if re.search(r'(.)(.)\1',s):
+            return 3
+        return -1
+        

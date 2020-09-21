@@ -1,0 +1,31 @@
+Given a list of integers nums, put all the zeros to the back of the list by modifying the list in-place. The relative ordering of other elements should stay the same.
+
+Can you do it in \mathcal{O}(1)O(1) additional space.
+
+Constraints
+
+n ≤ 100,000 where n is the length of nums
+Example 1
+Input
+
+nums = [0, 1, 0, 2, 3]
+Output
+
+[1, 2, 3, 0, 0]
+
+
+
+Solution:
+
+1. Remove all zeroes from list
+2. count how many zeroes in the list
+3. Finally add those zeroes at the of the list.
+
+class Solution:
+    def solve(self, nums):
+        # Write your code here
+        noZeroes=[i for i in nums if i != 0]
+        for i in range(0,nums.count(0)):
+            noZeroes.append(0)
+        return noZeroes
+        

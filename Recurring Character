@@ -1,0 +1,28 @@
+Given a string, return the index of the first recurring character in it. If there are no recurring characters, return -1.
+
+Example 1
+Input
+
+s = "abcda"
+Output
+
+4
+
+Solution:
+I used a dictionary to track which characters I have seen before.
+As I iterate through the string,
+I check if I've seen the character before (i.e. if the character exists in the dictionary). 
+If so, return the index.
+
+`enumerate` is a nice built-in function that returns me the index and character at the same time!
+
+class Solution:
+    def solve(self, s):
+        # Write your code here
+        dict={}
+        for i,j in enumerate(s):
+            if j in dict:
+                return i
+            dict[j]=1
+        return -1
+        

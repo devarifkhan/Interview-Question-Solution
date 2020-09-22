@@ -1,0 +1,29 @@
+Given the head of a singly linked list head, return whether the values of the nodes are sorted in a strictly ascending order.
+
+Example 1
+Input
+
+head = 1 → 51 → 101 → 101
+Output
+
+False
+
+Solution:
+
+We are very recursive! We're so recursive!!!
+If its none, return True. Otherwise, return False right away!
+
+# class LLNode:
+#     def __init__(self, val, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def solve(self, head):
+        # Write your code here
+        if head.next==None:
+            return True
+        if head.val>=head.next.val:
+            return False
+        return self.solve(head.next)
+            
+

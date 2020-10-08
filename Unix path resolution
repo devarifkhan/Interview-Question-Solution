@@ -1,0 +1,39 @@
+Given a Unix path, represented as a list of strings, return its resolved version.
+
+In Unix, ".." means to go to the previous directory and "." means to stay on the current directory. By resolving, we mean to evaluate the two symbols so that we get the final directory we're currently in.
+
+Constraints
+
+n ≤ 100,000 where n is the length of path
+Example 1
+Input
+
+path = ["usr", "..", "usr", ".", "local", "bin", "docker"]
+Output
+
+["usr", "local", "bin", "docker"]
+
+Explanation
+
+The input represents "/usr/../usr/./local/bin" which resolves to "/usr/local/bin/docker"
+
+
+Solution:
+
+Let's maintain ans, the current path of the directory we are at.
+
+When we see a command like '..', we should go backwards (if we can).
+If we see a command like '.', we should ignore it. If we see another command, we should travel into that directory.
+
+class Solution:
+    def solve(self, path):
+        lst = []
+        for i in path:
+            if i == '..':
+                if lst:
+                    lst.pop()
+            elif i != '.':
+                lst.append(i)
+        return lst
+        
+        

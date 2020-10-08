@@ -1,0 +1,32 @@
+Given a string s representing characters typed into an editor, with "<-" representing a backspace, return the current state of the editor.
+
+Example 1
+Input
+
+s = "abc<-z"
+Output
+
+"abz"
+Explanation
+
+The "c" got deleted by the backspace.
+
+Solution:
+
+Here I replaced all "<-" with " " so that 
+it becomes easy for us to understand and manipulate the string. 
+Now simply appending and popping values and returning the string made from list.
+
+class Solution:
+    def solve(self, s):
+        news = s.replace('<-', ' ')
+        lst = []
+        for i in news:
+            if i != ' ':
+                lst.append(i)
+            else:
+                if len(lst) != 0:
+                    lst.pop()
+        return ''.join(lst)
+        
+        

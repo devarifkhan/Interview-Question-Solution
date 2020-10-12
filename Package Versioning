@@ -1,0 +1,23 @@
+Given strings older and newer, each representing software package versions in the format major.minor.patch, return whether the newer version is actually newer than the older.
+
+Example 1
+Input
+
+older = "11.1.2"
+newer = "11.1.3"
+Output
+
+True
+
+Solution:
+
+We can then compare the integer values for each section of older and newer. 
+If the newer section is greater then it is newer. 
+If the older section is greater then newer is actually older and we return False.
+
+class Solution:
+    def solve(self, older, newer):
+        older=list(map(int,older.split('.')))
+        newer=list(map(int,newer.split('.')))
+        return older<newer
+        

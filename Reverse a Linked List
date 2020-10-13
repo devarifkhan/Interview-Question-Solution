@@ -1,0 +1,50 @@
+
+Given a singly linked list, return its reverse. For example, given 1 -> 2 -> 3 -> 4, return 4 -> 3 -> 2 -> 1.
+
+You should return the head of the reversed list, so in this case the node containing the 4.
+
+Bonus: Can you do this in constant space?
+Example 1
+
+Input
+
+node = 1
+
+Output
+
+1
+
+
+Solution:
+
+Initialize two pointers prev as NULL, current as head
+Iterate trough the linked list. In loop, do following.
+// Before changing next of current,
+// store next node
+next = current->next
+// Now change next of current
+// This is where actual reversing happens
+current->next = prev
+// Move prev and curr one step forward
+prev = current
+current = next
+
+After that change the pointer node to prev
+
+# class LLNode:
+#     def __init__(self, val, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def solve(self, node):
+        prev = None
+        current = node
+
+        while current:
+            next = current.next
+            current.next = prev
+            prev = current
+            current = next
+        node = prev
+        return prev
+

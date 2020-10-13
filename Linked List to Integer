@@ -1,0 +1,27 @@
+
+Given a single linked list node, representing a binary number with most significant digits first, return it as an integer.
+
+Example 1
+Input
+
+node = 1 → 0 → 0
+Output
+
+4
+
+Solution:
+
+First make a list and add all the value to it.
+Then make a string and convert using big integer function.
+
+# class LLNode:
+#     def __init__(self, val, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def solve(self, node):
+        lst = []
+        while node:
+            lst.append(str(node.val))
+            node = node.next
+        return int("".join(lst), 2)

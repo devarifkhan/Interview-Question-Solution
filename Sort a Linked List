@@ -1,0 +1,36 @@
+Given a singly linked list of integers, sort the nodes by their values in ascending order.
+
+Example 1
+Input
+
+node = 14 → 13 → 10
+Output
+
+10 → 13 → 14
+
+
+Solution:
+
+get the values and sort them and then overwrite the sorted values in the linked list
+
+# class LLNode:
+#     def __init__(self, val, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def getvals(self, node):
+        lst = []
+        temp = node
+        while temp:
+            lst.append(temp.val)
+            temp = temp.next
+        return sorted(lst)
+
+    def solve(self, node):
+        ll = self.getvals(node)
+        temp = node
+        while temp:
+            temp.val = ll.pop(0)
+            temp = temp.next
+        return node
+        

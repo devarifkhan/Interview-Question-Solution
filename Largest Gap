@@ -1,0 +1,27 @@
+Given a list of integers nums, return the largest difference of two consecutive integers in the sorted version of nums.
+
+Constraints
+
+n ≤ 100,000 where n is the length of nums
+Example 1
+Input
+
+nums = [4, 1, 2, 8, 9, 10]
+Output
+
+4
+
+
+Solution:
+
+Check the difference and store it.
+Update the max value every checking.
+
+class Solution:
+    def solve(self, nums):
+        ans = 0
+        nums.sort()
+        for i in range(len(nums)):
+            if nums[i] - nums[i - 1] > ans:
+                ans = nums[i] - nums[i - 1]
+        return ans

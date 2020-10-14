@@ -1,0 +1,28 @@
+Given three numbers, a, b, and c, return their product, but if any two numbers are the same, they do not count.
+
+Example 1
+Input
+
+a = 2
+b = 3
+c = 4
+Output
+
+24
+
+
+Solution:
+
+Count the number occurances of each value, if the occurance is equal to 1 multiply with that number
+
+from collections import Counter
+class Solution:
+    def solve(self, a, b, c):
+        l=Counter([a,b,c])
+        ans=1
+        for i in l:
+            if l[i]==1:
+                ans*=i
+        return ans
+
+        

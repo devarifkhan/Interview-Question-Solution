@@ -1,0 +1,25 @@
+Given a string s, consisting of "X" and "Y", delete the minimum number of characters such that there's no consecutive "X" and no consecutive "Y".
+
+Example 1
+Input
+
+s = "YYYXYXX"
+Output
+
+"YXYX"
+
+
+Solution:
+
+We replace any YYs with Y instead
+
+And keep iterating through the string till all of those duplicates are gone!
+
+class Solution:
+    def solve(self, s):
+        while "YY" in s or "XX" in s:
+            s = s.replace("YY", "Y")
+            s = s.replace("XX", "X")
+        return s
+        
+        

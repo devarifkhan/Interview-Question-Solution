@@ -1,0 +1,40 @@
+Given a list of words, frame it rectangularly, line by line. For example, given ["big", "data", "is", "oil"], return the string
+
+********
+* big  *
+* data *
+* is   *
+* oil  *
+********
+Note: Each line in the string is separated by a newline separator, or \n.
+
+Example 1
+Input
+
+words = ["big", "data", "is", "oil"]
+Output
+
+"********
+* big  *
+* data *
+* is   *
+* oil  *
+********"
+
+Solution:
+
+The number of * for top and bottom row is 4 + maximum length of any word.
+For the middle rows, it is essentially "* " + word + x spaces + " *" where x is maximum length of any word - length of the current word.
+Remember to add the newlines accordingly!
+
+class Solution:
+    def solve(self, words):
+        lst = []
+        l = max([len(i) for i in words])
+        lst.append('*'*(4 +l))
+        for i in words:
+            lst.append('* '+i+(l-len(i))*' '+' *')
+        lst.append('*'*(4 +l))
+    
+        return '\n'.join(lst)
+        

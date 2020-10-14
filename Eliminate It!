@@ -1,0 +1,22 @@
+Given a string s, remove all “y” and “xz” in the string in one iteration.
+
+Example 1
+Input
+
+s = "xyxyxz"
+Output
+
+"xx"
+
+Solution:
+
+In a regular expression, you can say you'd like to match one thing OR another by using '|'
+
+Here, we match y OR xz by writing (y|xz)
+
+We tell the engine to replace what it found with the empty string.
+
+import re
+class Solution:
+    def solve(self, s):
+        return re.sub(r'y|xz','',s)

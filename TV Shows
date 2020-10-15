@@ -1,0 +1,26 @@
+Given a list of strings shows, a list of integers durations, and an integer k, 
+where shows[i] and durations[i] represent the name and duration watched by the ith person, 
+return the total duration watched of the k most watched shows.
+
+Example 1
+Input
+
+shows = ["Top Gun", "Aviator", "Top Gun", "Roma", "Logan"]
+durations = [5, 3, 5, 13, 4]
+k = 2
+Output
+
+23
+
+Solution:
+
+It's like taking the k largest numbers out of an array, but first you need to combine the numbers belonging to the same title. We can do so using a dictionary.
+
+from collections import defaultdict
+class Solution:
+    def solve(self, shows, durations, k):
+        d=defaultdict(int)
+        for i,j in zip(shows,durations):
+            d[i]+=j
+        return sum(sorted(d.values())[-k::])
+        

@@ -1,0 +1,20 @@
+You are given a list of integers nums, representing the number of chess matches each person has won. Return a relative ranking (0-indexed) of each person. If two players have won the same amount, their ranking should be the same.
+
+Example 1
+Input
+
+nums = [50, 30, 50, 90, 10]
+Output
+
+[1, 2, 1, 0, 3]
+
+
+Solution:
+
+First, find all the uniquely occurring values in nums, sorted in decreasing order. Then map each of these values to its ranking index.
+
+class Solution:
+    def solve(self, nums):
+        SRev=sorted(set(nums), reverse=True)
+        index = {v:i for i,v in enumerate(SRev)}
+        return [index[i] for i in nums]

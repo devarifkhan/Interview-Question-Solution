@@ -1,0 +1,23 @@
+Given a list of sorted integers nums return the number of unique integers in the list.
+
+Contraints
+
+k ≪ n ≤ 1,000,000 where n is the length of nums and k is the number of unique integers.
+Notes
+
+\mathcal{O}(n)O(n) is accepted but \mathcal{O}(k\log{}n)O(klogn) is encouraged.
+Example 1
+Input
+
+nums = [2, 2, 2, 3, 4, 6, 6]
+Output
+
+4
+
+Solution:
+
+remove duplicates using set and count how many numbers are in set.
+
+class Solution:
+    def solve(self, nums):
+        return len(set(nums))

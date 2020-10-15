@@ -1,0 +1,23 @@
+Given two strings s0 and s1, return whether you can obtain s1 by removing 1 letter from s0.
+
+Example 1
+Input
+
+s0 = "hello"
+s1 = "hello"
+Output
+
+False
+
+
+Solution:
+
+Idea: Iterate thru every Letter in S0. If this letter were removed, would this be the same as S1? Then.. return True.
+If we iterated thru the whole string S0 and still didn`t encounter S1, then False.
+
+class Solution:
+    def solve(self, s0, s1):
+        for i in range(len(s0)):
+            if s0[:i]+s0[i+1:]==s1:
+                return True
+        return False

@@ -1,0 +1,35 @@
+
+Given a string s, return the length of the longest substring with same characters.
+
+For example, given abcccdda, return 3 since it's the length of ccc.
+
+Example 1
+Input
+
+s = "abbbba"
+Output
+
+4
+
+
+
+
+Solution:
+
+Count the character and update max_seq_len every time.
+
+class Solution:
+    def solve(self, s):
+        last_char = ""
+        current_seq_len = 0
+        max_seq_len = 0
+
+        for c in s:
+            if c == last_char:
+                current_seq_len += 1
+                if current_seq_len > max_seq_len:
+                    max_seq_len = current_seq_len
+            else:
+                current_seq_len = 1
+                last_char = c
+        return max_seq_len

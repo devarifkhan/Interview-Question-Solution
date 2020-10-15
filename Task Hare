@@ -1,0 +1,34 @@
+You are given a list of integers tasks and another list of integers people. The integer tasks[i] represents the amount of strength required to perform the ith task. people[i] represents the amount of strength the ith person has.
+
+Return the number of tasks that can be finished if one person can perform at most one task.
+
+Constraints
+
+n ≤ 100,000 where n is the length of tasks
+m ≤ 100,000 where m is the length of people
+Example 1
+Input
+
+tasks = [3, 2, 9, 13]
+people = [10, 5, 2, 1]
+Output
+
+3
+
+Solution:
+
+
+Each person (in increasing order of strength) should attempt the weakest unfinished task.
+
+If they can perform more tasks, then they should take the weakest one anyways (because everyone else still available is stronger than them), 
+and if they can't perform the weakest task, then they can't perform any remaining tasks anyways.
+
+class Solution:
+    def solve(self, tasks, people):
+        tasks.sort()
+        people.sort()
+        i = 0
+        for p in people:
+            if i < len(tasks) and p >= tasks[i]:
+                i += 1
+        return i

@@ -1,0 +1,33 @@
+Given a list of integers nums, sort the list in the following way:
+
+First number is the maximum
+Second number is the minimum
+Third number is the 2nd maximum
+Fourth number is the 2nd minimum
+And so on.
+Constraints
+
+n ≤ 100,000 where n is the length of nums.
+Example 1
+Input
+
+nums = [5, 2, 9, 3]
+Output
+
+[9, 2, 5, 3]
+
+
+SOLUTION:
+
+Sort the list both ways, zip the two.
+Flatten (using x for y in foo for y in x trick)
+Only take the first half (which will be the length of the input of course)
+
+class Solution:
+    def solve(self, nums):
+        return [i for l in zip(sorted(nums, reverse=True), sorted(nums)) for i in l][0 : len(nums)]
+
+class Solution:
+    def solve(self, nums):
+        return [i for l in zip(sorted(nums, reverse=True), sorted(nums)) for i in l][:len(nums)]
+        

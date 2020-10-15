@@ -1,0 +1,27 @@
+Given an integer n, we apply this transformation until it becomes a 1: take each of the digits in n, square it, and then take their sum.
+
+Return whether n will end up in 1 after the transformations.
+
+Example 1
+Input
+
+n = 7
+Output
+
+True
+
+
+Solution:
+
+Using toString technique in python, then convert to integer for each of the string characters and squared them, and sum() them up. 
+Next, see if they are in the list seen, if yes then break the while loop and return False since it means a cycle is detected.
+
+class Solution:
+    def solve(self, n):
+        seen=set()
+        while n!=1:
+            n=sum(int(i)**2 for i in str(n))
+            if n in seen:
+                return False
+            seen.add(n)
+        return True

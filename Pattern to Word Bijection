@@ -1,0 +1,29 @@
+Given two strings s and p, return whether s follows the pattern in p. That is, return whether each character in p can map to a non-empty word such that it maps to s.
+
+Constraints
+
+n ≤ 100,000 where n is the length of s
+Example 1
+Input
+
+s = "hello world world world hello"
+p = "abbba"
+Output
+
+True
+
+Solution:
+
+Bijection means that for every element in group a, there is only one element in group b and vice-versa.
+
+So, the number of elements in group a must equal the number of elements in group b which must equal the unique number of edges between the two groups.
+
+
+class Solution:
+    def solve(self, s, p):
+        word=s.split()
+        a=set(word)
+        b=set(p)
+        return len(a)==len(b)==len(set(zip(word,p)))
+        
+        

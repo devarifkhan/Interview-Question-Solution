@@ -1,0 +1,25 @@
+Given a list of integers nums and an integer k, return true if you can remove exactly one element from the list to make the average equal to exactly k.
+
+Constraints
+
+2 ≤ n ≤ 1,000 where n is length of nums
+nums[i], k ≤ 1,000,000
+Example 1
+Input
+
+nums = [1, 2, 3, 10]
+k = 2
+Output
+
+True
+
+Solution:
+
+sum(nums) - k * (n-1) is the value of a number which, if removed, would produce an average of k. We then check if this number is in the list
+
+class Solution:
+    def solve(self, nums, k):
+        n = len(nums)
+        return sum(nums) - k * (n - 1) in nums
+        
+        

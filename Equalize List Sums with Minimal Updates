@@ -1,0 +1,62 @@
+You are given two lists of integers a and b where every element in both lists is between 1 to 6. Consider an operation where you pick a number in either a or b and update its value to a number between 1 to 6.
+
+Return the minimum number of operations required such that the sum of a and b are equal. If it's not possible, return -1.
+
+Constraints
+
+n ≤ 100,000 where n is the length of a
+m ≤ 100,000 where m is the length of b
+Example 1
+Input
+
+a = [1, 5]
+b = [6, 5, 5]
+Output
+
+2
+
+Solution:
+
+
+The first thing we do is to check if the problem is solvable: 
+The maximum we can do is to set all values in the shorter array to 6 and all values in the longer array to 1.
+If the sum of the larger array is still bigger then the problem is not solvable and we return −1-1−1.
+
+In all other cases we want to increase as many values as needed to 666 in the array with the smaller sum and decrease as many values as needed to 111 in the array with the higher sum. If we over-increase / over-decrease a value the number of updates will not change as we could always adjust the number in the last update as needed. At each update we reduce the difference for numbers of the array with the smaller sum by 6−x6 - x6−x. For the other array we gain a reduction of x−1x - 1x−1. Therefore every possible update will decrease the difference by 5,4,3,2,15, 4, 3, 2, 15,4,3,2,1 or 000. We can count those values and greedily reduce the difference starting with 555 and always use as many updates as possible / needed.
+
+Complexity:
+
+Time complexity: O(n+m)\mathcal{O}(n + m)O(n+m)
+Auxiliary space complexity: O(1)\mathcal{O}(1)O(1)
+
+from math import ceil
+
+
+class Solution:
+    def solve(self, a, b):
+        if max(len(a), len(b)) > 6 * min(len(a), len(b)):
+            return -1
+
+        sum_a = sum(a)
+        sum_b = sum(b)
+        if sum_a > sum_b:
+            a, b = b, a
+            sum_a, sum_b = sum_b, sum_a
+
+        counts = [0] * 6
+        for x in a:
+            counts[6 - x] += 1
+        for x in b:
+            counts[x - 1] += 1
+
+        diff = sum_b - sum_a
+        updates = 0
+        for x in range(5, 0, -1):
+            used = min(counts[x], ceil(diff / x))
+            updates += used
+            diff -= used * x
+            if diff <= 0:
+                break
+
+        return updates
+

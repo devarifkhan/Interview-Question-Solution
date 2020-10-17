@@ -1,0 +1,53 @@
+Given a list of integers nums, return whether you can split the list into 1 or more groups where:
+
+The size of each group is larger than or equal to 2.
+The sizes of all groups are equal.
+All the integers in each group are the same.
+Constraints
+
+n ≤ 100,000 where n is the length of nums
+Example 1
+Input
+
+nums = [2, 3, 5, 8, 3, 2, 5, 8]
+Output
+
+True
+
+Solution:
+
+Approach
+
+Find the number of occurences of every unique element in the list. For example:
+Assume nums = [ 8, 2, 3, 5, 8, 3, 2, 5, 8, 8 ] 
+The counts for elements will be counter = { 2:2 , 3:2 . 5:2 , 8:4 }
+We are storing counts in the form (number:number of occurrences)
+Find the common_gcd of all the counts in counter.
+In this case, common_gcd = gcd( 2,2,2,4 ) = 2
+If the common_gcd > 1, then your answer is true otherwise your answer is false. common_gcd =1 is not acceptable because we want sub_lists of size greater than 1.
+In this example, common_gcd = 2. So we can divide the list into 5 equal sub-lists of size 2.
+These are the sub-lists: [2,2], [3,3], [5,5], [8,8], [8,8]
+You might ask why find gcd of all the counts?
+
+The question expects you to divide all the numbers in the list into sub-lists such that the size of each sub-list is equal. Now note that you can make two or more sub-lists out of the counts of a single unique number.
+
+For example if you have 10 occurring six times in your list then you can choose to have:
+[ 10, 10, 10, 10, 10, 10 ]                or
+[10 , 10, 10] and [10, 10, 10]            or
+[10 , 10] , [10, 10] and [10, 10]
+But when you divide a particular number's occurrences into sub-lists of size say x with ( x>1 ) , you need to make sure that the counts of other numbers should also be evenly divisible by the same value x ! If not then you cannot divide them into same sized sub-lists ! So in essence, you want x to be a common divisor of all the counts such that x > 1. The condition x > 1  tells you that x should be as large as possible.
+
+So indeed what you actually need to find is the GCD(Greatest Common Divisor) of all the counts.
+
+Keep Coding ! :)
+
+
+from collections import Counter
+from math import gcd
+class Solution:
+    def solve(self, nums):
+        counter=Counter(nums)
+        initialize_gcd=counter[nums[0]]
+        for i in counter:
+            initialize_gcd=gcd(counter[i],initialize_gcd)
+        return initialize_gcd>1

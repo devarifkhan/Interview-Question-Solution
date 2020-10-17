@@ -1,0 +1,26 @@
+Given a list of integers nums, return whether there's an integer whose frequency in the list is same as its value.
+
+Example 1
+Input
+
+nums = [7, 9, 3, 3, 3]
+Output
+
+True
+
+
+Solution:
+
+Make a dictionary to count how many times its repeated.
+Check count equals to its value.
+
+class Solution:
+    def solve(self, nums):
+        dict = {}
+        for i in nums:
+            if i in dict:
+                dict[i] += 1
+            else:
+                dict[i] = 1
+
+        return any([dict[j] == j for i, j in enumerate(dict)])

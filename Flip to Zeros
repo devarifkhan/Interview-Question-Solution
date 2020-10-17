@@ -1,0 +1,31 @@
+You are given an integer list nums containing 0s and 1s. Consider an operation where we pick an index i in nums and flip i as well as all numbers to the right of i. Return the minimum number of operations required to make nums contain all 0s.
+
+Constraints
+
+n ≤ 100,000 where n is the length of nums.
+Example 1
+Input
+
+nums = [1, 1, 0]
+Output
+
+2
+
+Solution:
+
+This is a easy solution.
+I keep the number of flips that I have done.
+If the number of flips is even, it means that the current number is maintained. If not, it's flipped.
+If I have 0 and even flips, I'm ok. If I have 1 and odd flips, I'm also ok because that 1 was already flipped. Otherwise I need to do one more flip.
+
+This solution is \mathcal{O}(n)O(n) where nn is the length of the sequence.
+
+class Solution:
+    def solve(self, nums):
+        flips = 0
+        for n in nums:
+            if n == flips % 2:
+                continue
+            else:
+                flips += 1
+        return flips

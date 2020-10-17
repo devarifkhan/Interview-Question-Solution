@@ -1,0 +1,41 @@
+You are given a lowercase alphabet string text, and another string key. Return a new string where every letter in text[i] is moved to the right with offset key[i]. Offset is equal to key[i]'s position in the alphabet (A=0, B=1 etc.)
+
+Note: If the letter overflows past z, it gets wrapped around the other side.
+
+Constraints
+
+Length of text, key ≤ 10000
+Example 1
+Input
+
+text = "bcd"
+key = "bbb"
+Output
+
+"cde"
+
+
+Solution:
+Create two dictionaries:
+numbers = a => 0, b => 1, c => 2 ... z => 25
+letters = 0 => a, 1 => b, 2 => c ... 25 => z
+
+For each letter in "text" get the number using numbers (dictionary), get the number of key[same_index] using numbers (dictionary), 
+and then add both with the modulus of 26 ... finally, get the letter of that number using letters (dictionary).
+
+import string
+
+
+class Solution:
+    def solve(self, text, key):
+        numbers = dict(zip(string.ascii_lowercase, range(26)))
+        letters = dict(zip(range(26), string.ascii_lowercase))
+
+        vigenere = []
+
+        for i, ch in enumerate(text):
+            vigenere.append(letters[(numbers[ch] + numbers[key[i]]) % 26])
+
+        return "".join(vigenere)
+        
+        

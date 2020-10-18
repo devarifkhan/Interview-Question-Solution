@@ -1,0 +1,32 @@
+Given a list of integers nums, return the largest integer k where k and -k both exist in nums (they can be the same integer). If there's no such integer, return -1.
+
+Example 1
+Input
+
+nums = [-4, 1, 8, -5, 4, -8]
+Output
+
+8
+
+Solution:
+
+Instead of using a dictionary or searching through a sorted list, this is a faster and efficient solution. We convert the given list to set using set() function, which hashes the elements internally. And using the in operator becomes easier.
+
+And using continue when we encounter a negative number is faster than coercing it to a negative number.
+And using the max() function will increase the rate of swapping.
+
+These are all making it the ideal and fast solution for this problem.
+
+
+class Solution:
+    def solve(self, nums):
+        mx = -1
+        x = set(nums)
+        for i in nums:
+            if i < 0:
+                continue
+            if i in x and -i in x:
+                mx = max(mx, i)
+        return mx
+        
+        

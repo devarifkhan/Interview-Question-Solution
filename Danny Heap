@@ -1,0 +1,25 @@
+Given a list of integers nums, return whether it represents a max heap. That is, for every i we have that:
+
+nums[i] ≥ nums[2*i + 1] if 2*i + 1 is within bounds
+nums[i] ≥ nums[2*i + 2] if 2*i + 2 is within bounds
+Example 1
+Input
+
+nums = [4, 2, 3, 0, 1]
+Output
+
+True
+
+Solution:
+
+Since to satisfy the requirements of the max heap, to deal with the out of bounds, just use try and except method.
+
+class Solution:
+    def solve(self, nums):
+        for i in range(len(nums)):
+            try:
+                if nums[i] < nums[2 * i + 1] or nums[i] < nums[2 * i + 2]:
+                    return False
+            except:
+                continue
+        return True

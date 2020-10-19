@@ -1,0 +1,33 @@
+Given a list of lowercase alphabet strings words, return the length of the longest contiguous sublist where all words share the same first letter.
+
+Example 1
+Input
+
+words = ["she", "sells", "seashells", "he", "sells", "clams"]
+Output
+
+3
+
+Solution:
+
+store the first letter in a variable (here seen)
+then run a for loop from the second word , if seen = 1st letter of word increment a variable
+if not check whether the incremented variable with a length variable and continue
+
+class Solution:
+    def solve(self, words):
+        if len(words)<2:
+            return len(words)
+        seen,ans=words[0][0],1
+        length=0
+        for i in words[1:]:
+            if i[0]==seen:
+                ans+=1
+            else:
+                if ans>length:
+                    length=ans
+                ans=1
+                seen=i[0]
+        if ans>length:
+            length=ans
+        return length

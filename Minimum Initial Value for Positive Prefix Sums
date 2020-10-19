@@ -1,0 +1,27 @@
+You are given a list of integers nums. Return the minimum value we can append to the beginning of nums such that prefix sums of the resulting list contains numbers that are all greater than 0.
+
+Constraints
+
+n ≤ 100,000 where n is the length of nums
+Example 1
+Input
+
+nums = [2, -5, 3, 2]
+Output
+
+4
+
+Solution:
+
+We store all the negative sums in negatives and then return the smallest one among them multiplied by -1 to make it positive. If we end the function here, the smallest value will be 0, that is why we have to add 1 to the result to make the smallest value == 1.
+
+class Solution:
+    def solve(self, nums):
+        negatives = []
+        total = 0
+        for i in nums:
+            total += i
+            if total < 0:
+                negatives.append(total)
+        return -1 * min(negatives) + 1 if negatives else 1
+

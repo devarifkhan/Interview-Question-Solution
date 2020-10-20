@@ -1,0 +1,37 @@
+Given a list of strings words and a string letters, return the length of longest string in words that can be made from letters in letters. If no word can be made, return 0.
+
+Note that you can't reuse letters.
+
+Constraints
+
+Length of words ≤ 10000
+Length of letters ≤ 1000
+Example 1
+Input
+
+words = ["the", "word", "love", "scott", "finder", "dictionary"]
+letters = "fanierdow"
+Output
+
+6
+
+Solution:
+
+For each word, let's see if we can build it among the letters we have.
+
+We use a collections.Counter to count everything. For each character c in word, it has a frequency of v, and we have the requirement count_letters[c] >= v.
+
+from collections import Counter
+
+
+class Solution:
+    def solve(self, words, letters):
+        count_letters = Counter(letters)
+
+        ans = 0
+        for word in words:
+            count_word = Counter(word)
+            if all(count_letters[c] >= v for c, v in count_word.items()):
+                ans = max(ans, len(word))
+        return ans
+

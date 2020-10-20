@@ -1,0 +1,42 @@
+Given a list of words and a string with no spaces, return whether or not the string can be broken down using the list of words.
+
+For example, given the list of words ["quick", "brown", "the", "fox"] and the string "thequickbrownfox", return true since the original sentence would be "the quick brown fox".
+
+Given the list of words ["hello", "world"] and the string "hellofoobarworld", return false since you cannot break down the string.
+
+It's not required to use all of the words and words can be repeated as well.
+
+Example 1
+Input
+
+words = ["quick", "brown", "the", "fox"]
+s = "thequickbrownfox"
+Output
+
+True
+Solution:
+
+We'll take a memoized BFS/top-down DP approach. Let's define the subproblem as a shorter word that can be broken down into the given words.
+
+Our base case is the empty string, which is always formable from list of words (i.e. we don't pick any words). Otherwise,
+given a non-empty string, go through the list of words -- if the given string starts with a word in wordList, 
+then check the candidate string (original_word - prefix). We memoize the result as an optimization.
+
+import functools
+class Solution:
+    def solve(self, words, s):
+        @functools.lru_cache(None)
+        def dp(s):
+            if s == "":
+                return True
+
+            for word in words:
+                if s.startswith(word) and dp(s[len(word):]):
+                    return True
+
+            return False
+
+
+        return dp(s)
+        
+        

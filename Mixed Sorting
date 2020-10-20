@@ -1,0 +1,39 @@
+Given a list of integers nums, sort the array such that:
+
+All even numbers are sorted in increasing order
+All odd numbers are sorted in decreasing order
+The relative positions of the even and odd numbers remain the same
+Example 1
+Input
+
+nums = [8, 13, 11, 90, -5, 4]
+Output
+
+[4, 13, 11, 8, -5, 90]
+
+
+Solution:
+
+Collect the elements and sort them separately, then insert them back into the array in the desired order.
+
+class Solution:
+    def solve(self, nums):
+        odds, evens = [], []
+        for x in nums:
+            if x % 2:
+                odds.append(x)
+            else:
+                evens.append(x)
+
+        odds.sort()
+        evens.sort(reverse=True)
+
+        for i, x in enumerate(nums):
+            if x % 2:
+                nums[i] = odds.pop()
+            else:
+                nums[i] = evens.pop()
+
+        return nums
+        
+        

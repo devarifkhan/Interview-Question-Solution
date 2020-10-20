@@ -1,0 +1,27 @@
+Given a list of integers nums, return the length of the shortest sublist in nums which if sorted would make nums sorted in ascending order.
+
+Example 1
+Input
+
+nums = [0, 1, 4, 3, 8, 9]
+Output
+
+2
+
+Solution:
+Sort nums and save in lst
+Find the first index where nums and lst differ
+Find the last index where nums and lst differ
+return "last index - first index + 1", i.e., the length of range that has difference between two lists.
+
+class Solution:
+    def solve(self, nums):
+        lst = sorted(nums)
+        for i in range(len(nums)):
+            if nums[i] != lst[i]:
+                break
+        for j in range(len(nums) - 1, -1, -1):
+            if nums[j] != lst[j]:
+                break
+        return j - i + 1 if j > i else 0
+

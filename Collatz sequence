@@ -1,0 +1,24 @@
+Given a positve integer n, find the length of its Collatz sequence. Collatz sequence is generated sequentially where
+
+n = n / 2 if n is even
+n = 3 * n + 1 if n is odd
+And the sequence ends if n = 1
+Example 1
+Input
+
+n = 11
+Output
+
+15
+
+Solution:
+
+class Solution:
+    def solve(self, n):
+        lst = []
+        lst.append(n)
+        while n != 1:
+            n = (n // 2) if n % 2 == 0 else (3 * n + 1)
+            lst.append(n)
+        
+        return len(lst)

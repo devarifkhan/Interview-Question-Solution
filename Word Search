@@ -1,0 +1,54 @@
+Given a 2D matrix of characters and a target word, write a function that returns whether the word can be found in the matrix by going left-to-right, or up-to-down unidrectionally.
+
+For example, given the following matrix:
+
+[['F', 'A', 'C'],
+ ['O', 'B', 'Q'],
+ ['A', 'X', 'O'],
+ ['M', 'A', 'B']]
+and the target word 'FOAM', you should return true.
+
+Example 1
+Input
+
+board = [
+    ["H", "E", "L", "L", "O"],
+    ["A", "B", "C", "D", "E"]
+]
+word = "HELLO"
+Output
+
+True
+
+
+Solution:
+
+basically i have made words out of the rows and the columns and then searched for the word(target) to either be the word or a part of the word
+from the
+"
+for lst in board:
+words.append("".join(lst))
+" i have extracted the rows are words and appended them in the list
+
+then i extracted from the columns
+"
+cols=list(zip(*board))
+for ls in cols:
+words.append("".join(ls))
+"
+ans then in the end i have checked for the presence of the string word in either the words formed by the row or the column
+
+class Solution:
+    def solve(self, board, word):
+        words = []
+        for lst in board:
+            words.append("".join(lst))
+        cols = list(zip(*board))
+        for ls in cols:
+            words.append("".join(ls))
+        for i in words:
+            if word == i or word in i:
+                return True
+        return False
+        
+        

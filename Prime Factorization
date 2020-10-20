@@ -1,0 +1,37 @@
+Given an integer n greater than 1, find all of its prime factors and return them in sorted order.
+
+You can write out a number as a product of prime numbers, which are its prime factors. The same prime factor may occur more than once.
+
+For example, given 12, return [2, 2, 3] since 2 * 2 * 3 = 12.
+
+Example 1
+Input
+
+n = 12
+Output
+
+[2, 2, 3]
+
+Solution:
+
+Generally, the algorithm for this task is: for each candidate divisor d = 2, 3, ... to try to divide n by that divisor.
+
+We showcase some intelligent optimizations to the usual algorithm:
+
+First, we increment d by 2 when d is odd, so as to skip the even numbers.
+
+Second, we stop when d * d > n, as if no smaller d divides n, then it is guaranteed n is prime.
+
+
+class Solution:
+    def solve(self, n):
+        ans = []
+        d = 2
+        while d * d <= n:
+            while n % d == 0:
+                n //= d
+                ans.append(d)
+            d += 1 + (d & 1)
+        if n > 1:
+            ans.append(n)
+        return ans

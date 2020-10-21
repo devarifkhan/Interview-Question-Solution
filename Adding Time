@@ -1,0 +1,36 @@
+Given a string representing as 12-hour clock time with am/pm, and an integer n , add n minutes to the time and return the new time in the same format.
+
+Example 1
+Input
+
+s = "5:30pm"
+n = 90
+Output
+
+"07:00pm"
+
+
+Solution:
+
+What makes this problem tricky is that in 12-hour time, any '00''s in the hour part are replaced with '12''s.
+
+First, we collect the hours and mins from the time, replacing 12 with 00 if necessary.
+Then, we find t, the final total minutes since midnight, and the implied hours and mins h and m.
+We then convert h back to 12 hour time (ie. '00' -> '12')
+
+class Solution:
+    def solve(self, s, n):
+        hours, mins = map(int, s[:-2].split(":"))
+        hours %= 12
+        if s[-2:] == "pm":
+            hours += 12
+
+        t = hours * 60 + mins + n
+        h, m = divmod(t, 60)
+        h %= 24
+        meridiem = "a" if h < 12 else "p"
+        h %= 12
+        if h == 0:
+            h = 12
+
+        return "{:02d}:{:02d}{}m".format(h, m, meridiem)

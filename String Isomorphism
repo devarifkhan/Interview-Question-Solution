@@ -1,0 +1,20 @@
+Given lowercase alphabet strings s, and t return whether you can create a 1-to-1 mapping for each letter in s to another letter (could be the same letter) such that s could be mapped to t, with the ordering of characters preserved.
+
+Example 1
+Input
+
+s = "coco"
+t = "kaka"
+Output
+
+True
+
+Solution:
+
+Since each unique character in S should equal one unique character in T and vice versa, 
+we can check that the number of unique pairs of corresponding letters equal the number of unique characters in S and T.
+
+class Solution:
+    def solve(self, s, t):
+        return len(set(zip(s, t))) == len(set(s)) == len(set(t))
+

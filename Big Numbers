@@ -1,0 +1,41 @@
+Given a two-dimensional integer matrix, return the total number of integers whose value is the largest in its row and in its column. For example, given
+
+1 3 2
+4 6 5
+1 5 7
+Return 2 since 6 and 7 meet the criteria.
+
+Constraints
+
+The number of rows in matrix is at most 200
+The number of columns in matrix is at most 200
+Example 1
+Input
+
+matrix = [
+    [1, 3, 2],
+    [6, 6, 5],
+    [1, 5, 7]
+]
+Output
+
+3
+
+
+Soltion:
+
+We calculate the max of each row and of each column, and check if both are equal to the cell for any position.
+
+zip(*matrix) is a cool trick that will transpose your matrix.
+
+class Solution:
+    def solve(self, matrix):
+        transpose = zip(*matrix)
+        maxr = [max(row) for row in matrix]
+        maxc = [max(col) for col in transpose]
+        return sum(
+            matrix[i][j] == maxr[i] == maxc[j]
+            for j in range(len(matrix[0]))
+            for i in range(len(matrix))
+        )
+

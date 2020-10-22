@@ -1,0 +1,35 @@
+
+Given a list of integers prices representing the stock prices of a company in chronological order, return the maximum profit you could have made from buying and selling that stock once.
+
+You must buy before you can sell it.
+
+Note: You are not required to buy or sell the stock.
+
+Example 1
+Input
+
+prices = [9, 11, 8, 5, 7, 10]
+Output
+
+5
+
+Solution:
+
+O(n) Time
+O(1) Space
+
+While you go through the list the only thing you need to know is the minimum value you have seen before.
+Keep updating the minimum and take the maximum profit as you go.
+
+class Solution:
+    def solve(self, prices):
+        if not prices:
+            return 0
+        mn = prices[0]
+        ans = 0
+        for p in prices:
+            ans = max(p - mn, ans)
+            mn = min(mn, p)
+        return ans
+        
+        

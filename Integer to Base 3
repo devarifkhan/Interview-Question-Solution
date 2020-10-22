@@ -1,0 +1,29 @@
+Given an integer n, return its base 3 representation as a string.
+
+Example 1
+Input
+
+n = 5
+Output
+
+"12"
+
+Solution:
+
+If the number is negative, then multiply it by -1,
+but remember that the sign is "-". Proceed as usual, taking the modulo and dividing. 
+At the end, tack the sign onto the beginnning.
+
+class Solution:
+    def solve(self, n):
+        res = ''
+        sign = ''
+        if n < 0:
+            sign = '-'
+            n *= -1
+        while n > 0:
+            res = str(n % 3) + res
+            n //= 3
+        return sign + res
+        
+        

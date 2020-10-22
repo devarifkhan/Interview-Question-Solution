@@ -1,0 +1,34 @@
+You are given a string dictionary, representing a partial lexicographic ordering of ancient astronauts' dictionary. Given a string s, return whether it's a lexicographically sorted string according to this ancient astronaut dictionary.
+
+Example 1
+Input
+
+dictionary = "acb"
+s = "aaaa h ccc i bbb"
+Output
+
+True
+
+
+Solution:
+
+It would look like this [0,0,0,1,1,1,2 ...]
+
+If its not ordered we would have [0,0,1,1,3,0 ...] 0 is out or order.
+
+1 - Create index array from s
+
+2- Check the ordering. Return False on failure
+
+
+class Solution:
+    def solve(self, dictionary, s):
+        dict=[dictionary.index(i) for i in s if i in dictionary]
+        i=0
+        while i<len(dict)-1:
+            if dict[i+1]<dict[i]:
+                return False
+            i+=1
+        return True
+        
+        

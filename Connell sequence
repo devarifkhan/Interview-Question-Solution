@@ -1,0 +1,33 @@
+The Connell sequence is a sequence made by:
+
+Taking the first odd integer: 1
+Taking the next two even integers 2, 4
+Taking the next three odd integers 5, 7, 9
+Taking the next four even integers 10, 12, 14, 16
+And so on.
+Given an integer n, return the nth (0-indexed) term of this sequence.
+
+Constraints
+
+n ≤ 10000
+Example 1
+Input
+
+n = 2
+Output
+
+4
+
+
+Solution:
+
+This problem challenges your ability to google Connell sequence and finding this link: 
+https://mathworld.wolfram.com/ConnellSequence.html#:~:text=The Connell sequence is the,16%2C 17%2C ...
+
+from math import sqrt
+
+
+class Solution:
+    def solve(self, n):
+        n += 1
+        return 2 * n - (1 + sqrt(8 * n - 7)) // 2

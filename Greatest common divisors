@@ -1,0 +1,31 @@
+Given a list of positive integers nums, return the largest positive integer that divides each of the integers.
+
+Example 1
+Input
+
+nums = [6, 12, 9]
+Output
+
+3
+
+Solution:
+
+If we need to find gcd of more than two numbers, gcd is equal to the product of the prime factors common to all the numbers provided as arguments. 
+It can also be calculated by repeatedly taking the GCDs of pairs of numbers of arguments.
+
+class Solution:
+    def solve(self, nums):
+        def findgcd(x, y):
+            while y:
+                x, y = y, x % y
+            return x
+        if len(nums)>1:   
+            num1 = nums[0]
+            num2 = nums[1]
+            gcd = findgcd(num1, num2)
+            for i in range(2, len(nums)):
+                gcd = findgcd(gcd, nums[i])
+            return gcd
+        else:
+            return nums[0]
+            

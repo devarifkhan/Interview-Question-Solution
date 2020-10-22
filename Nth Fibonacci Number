@@ -1,0 +1,27 @@
+The Fibonacci sequence goes like this: 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
+
+The next number can be found by adding up the two numbers before it, and the first two numbers are always 1.
+
+Write a function that takes an integer n and returns the nth Fibonacci number in the sequence.
+
+Note: n will be less than or equal to 30.
+
+Example 1
+Input
+
+n = 1
+Output
+
+1
+
+Soltion:
+
+We recursively call solve. We use lru_cache to memoize this call otherwise it'll call solve many times for each n
+
+from functools import lru_cache
+class Solution:
+    @lru_cache(None)
+    def solve(self, n):
+        if n <= 2:
+            return 1
+        return self.solve(n - 1) + self.solve(n - 2)

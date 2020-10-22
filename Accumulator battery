@@ -1,0 +1,54 @@
+
+You have a mobile phone which has "eco mode" that activates once your battery level reaches 20 percent. In this mode the battery drains two times slower than in normal mode.
+
+When you leave your home you have 100% of battery. After t minutes you have p percent of battery left.
+Return how many minutes you have until your phone will turn off.
+
+Constraints
+
+1 ≤ t ≤ 360
+1 ≤ p ≤ 99
+Example 1
+Input
+
+t = 70
+p = 30
+Output
+
+50
+
+Solution:
+
+For the results when p is 20 or above:
+
+the rate of battery drain is the percentage drained, divided by the time. (100 - p) / t [represented in percentage per minute]
+the time it will take to drain to 20% is (p - 20) / rate
+the time it will take to drain from 20% to 0% is 20 / rate * 2
+If we add these two values together, we will get the time until the battery drains, when it starts with 20% or more battery life.
+If the current battery life is less than 20%, then we need to calculate the original rate of drain.
+
+The time taken to drain to 20% was 80 / rate
+
+The time taken to drain from 20% to the current percentage was (20 - p) / rate * 2
+
+So, we get a formula of t = (120 - 2 * p) / rate
+
+This can be changed to rate = (120 - 2p) / time
+
+The time that will be taken to go from the current percentage to 0 will be 2 * p / rate
+
+Plugging in our above rate, we get time = 2tp / (120 - 2p)
+
+class Solution:
+    def solve(self, t, p):
+        if p >= 20:
+            rate = (100 - p) / t
+
+            time_to_20 = (p - 20) / rate
+            time_from_20 = 20 / rate * 2
+
+            return time_to_20 + time_from_20
+
+        return 2 * t * p / (120 - 2 * p)
+        
+        

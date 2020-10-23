@@ -1,0 +1,27 @@
+Given a list of integers nums, return whether you can rearrange the order of nums such that the difference between every consecutive two numbers is the same.
+
+Constraints
+
+n ≤ 100,000 where n is the length of nums
+Example 1
+Input
+
+nums = [7, 1, 5, 3]
+Output
+
+True
+
+
+Solution:
+
+We can simply sort the array and check if the number of distinct differences between each pair of consecutive elements is equal to 11.
+
+class Solution:
+    def solve(self, nums):
+        nums.sort()
+        diffs = set()
+        for i in range(1, len(nums)):
+            diffs.add(nums[i] - nums[i - 1])
+        return len(diffs) == 1
+        
+        

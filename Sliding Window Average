@@ -1,0 +1,48 @@
+Given a stream of integers and an integer window_size, maintain a sliding window of size window_size and compute moving averages of this window.
+
+For example:
+
+s = SlidingWindowAverage(2)
+s.average(1) == 1
+s.average(2) == 1.5
+s.average(3) == 2.5
+Constraints
+
+n ≤ 100,000 where n is the number of calls to average
+Example 1
+Input
+
+methods = ["constructor", "average", "average", "average"]
+
+arguments = [[2], [1], [2], [3]]
+
+Output
+
+[None, 1, 1.5, 2.5]
+
+
+Solution:
+
+Use a deque to keep track of the current elements and another variable to save the current sum
+Whenever a new number is added, we update the sum and check if the deque length is larger than the capacity (window size). If it is, we just pop from the front
+Then we return the sum divided by length of this deque
+Complexity
+
+Time: \mathcal{O}(1)O(1) for both the constructor and the average function
+Space: \mathcal{O}(n)O(n)
+from collections import deque
+
+
+class SlidingWindowAverage:
+    def __init__(self, window_size):
+        self.q = deque()
+        self.capacity = window_size
+        self.sum = 0
+
+    def average(self, val):
+        self.q.append(val)
+        self.sum += val
+        if len(self.q) > self.capacity:
+            self.sum -= self.q.popleft()
+        return self.sum / len(self.q)
+        

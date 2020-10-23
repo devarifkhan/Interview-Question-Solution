@@ -1,0 +1,30 @@
+Given an integer n, return the nth (0-indexed) row of Pascal's triangle.
+
+Pascal's triangle can be created as follows: In the top row, there is an array of 1. Subsequent row is created by adding the number above and to the left with the number above and to the right, treating empty elements as 0.
+
+The first few rows are:
+
+
+
+Example 1
+Input
+
+n = 3
+Output
+
+[1, 3, 3, 1]
+
+Solution:
+
+In this function, we will initialize the top row first, using the trow variable. 
+We also initialize variable y=0. Now we will use a for loop to run the code for n iterations.
+
+class Solution:
+    def solve(self, n):
+       trow = [1]
+       y = [0]
+       for x in range(n):
+          trow=[left+right for left,right in zip(trow+y, y+trow)]
+       return trow
+        
+        

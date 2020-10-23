@@ -1,0 +1,48 @@
+
+You are given a list of list of integers intervals where each element contains the inclusive interval [start, end].
+
+Return the most frequently occurring number in the intervals. If there are ties, return the smallest number.
+
+Constraints
+
+n ≤ 100,000 where n is the length of intervals
+Example 1
+Input
+
+intervals = [
+    [1, 4],
+    [3, 5],
+    [6, 9],
+    [7, 9]
+]
+Output
+
+3
+
+Solution:
+
+We can create a dictionary (map) to maintain the start and end of the intervals.
+For every start point in interval we can increase the counter by 1 at that point denoting that the interval is started and for every end point + 1 (as the intervals are inclusive) we can decrease the counter by 1 denoting the end of interval.
+Then we can traverse through all the keys of the dictionary and maintaining a active interval of time and if the current active interval is more than the answer, we update the answer.
+
+Time - O(nlogn) - sorting
+Spcae - O(n) - for dictionary
+
+from collections import defaultdict as dd
+
+
+class Solution:
+    def solve(self, intervals):
+        start = dd(int)
+        intervals.sort()
+        for i in intervals:
+            start[i[0]] += 1
+            start[i[1] + 1] -= 1
+        active = ans = 0
+        for i in sorted(start.keys()):
+            active += start[i]
+            if active > ans:
+                ans = active
+                val = i
+        return val
+

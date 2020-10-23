@@ -1,0 +1,22 @@
+Given an integer n, return whether it is equal to the sum of its own digits raised to the power of the number of digits.
+
+Example 1
+Input
+
+n = 153
+Output
+
+True
+
+
+Solution:
+
+Just do what the problem says.
+We use a list comprehension to write each digit into an array. 
+This makes it easy to calculate the required sum of powers.
+
+class Solution:
+    def solve(self, n):
+        return n == sum([ int(i)**(len(str(n))) for i in str(n)])
+        
+        

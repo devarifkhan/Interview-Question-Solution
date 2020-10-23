@@ -1,0 +1,25 @@
+Given a list of strings book, page an index (0-indexed) into the book, and page_size, return the list of words on that page.
+
+If the page is out of index, return an empty list.
+
+Example 1
+Input
+
+book = ["concrete", "genuine", "plaster", "compact", "operation", "truth", "west"]
+page = 1
+page_size = 3
+Output
+
+["compact", "operation", "truth"]
+
+Solution:
+
+This question tests your knowledge of the slice operation. page * page_size is the actual index of the first word of the answer. 
+You then slice forward to collect another page_size words.
+
+
+class Solution:
+    def solve(self, book, page, page_size):
+        return book[page * page_size : page * page_size + page_size]
+        
+        

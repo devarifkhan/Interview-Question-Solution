@@ -1,0 +1,27 @@
+Given a number n, return a list of all prime numbers smaller than or equal to n in ascending order.
+
+For example, given the number 10, return the list [2, 3, 5, 7].
+
+Note: 1 is not a prime number.
+
+Example 1
+Input
+
+n = 3
+Output
+
+[2, 3]
+
+Solution:
+
+class Solution:
+    def solve(self, n):
+        lst = []
+        for num in range(2, n + 1):
+            if num > 1:
+                for i in range(2, num):
+                    if (num % i) == 0:
+                        break
+                else:
+                    lst.append(num)
+        return lst

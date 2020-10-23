@@ -1,0 +1,23 @@
+You are given a string s of "a" and "b"s. "a"s can stay "a" or turn into "b", but "b"s can't change.
+
+Return the number of unique strings that can be made.
+
+Constraints
+
+n ≤ 10,000 where n is the length of s
+Example 1
+Input
+
+s = "abba"
+Output
+
+4
+
+Solution:
+
+Once you notice the pattern it becomes easy. This is an nCk solution, which is also equivalent to the ith line of pascal's triangle. The sum of the numbers on a line of pascal's triangle is equal to 2 ** i. And so we obtain 2 ** s.count('a').
+
+class Solution:
+    def solve(self, s):
+        return 2 ** s.count("a")
+

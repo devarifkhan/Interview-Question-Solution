@@ -1,0 +1,34 @@
+Given positive integers start and end (start < end), return the minimum number of operations needed to convert start to end using these operations:
+
+Increment by 1
+Multiply by 2
+Constraints
+
+start < end < 2 ** 31
+Example 1
+Input
+
+start = 2
+end = 9
+Output
+
+3
+
+
+Solution:
+
+Starting from end dividing by 2 if even and decrementing by 1 if it is odd and returning the count.
+
+class Solution:
+    def solve(self, start, end):
+        ct = 0
+        while end / 2 >= start:
+            if end % 2 == 1:
+                end -= 1
+                end = end / 2
+                ct += 2
+            else:
+                end = end / 2
+                ct += 1
+        ct += end - start
+        return ct

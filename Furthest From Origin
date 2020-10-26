@@ -1,0 +1,24 @@
+You are given a string s where each character is "L" meaning you moved one unit left, "R" meaning you moved one unit right, or "?" meaning either "L" or "R".
+
+Given you are at position 0, return the maximum possible distance you could be from 0 by replacing "?" with "L" or "R".
+
+Example 1
+Input
+
+s = "LLRRR??"
+Output
+
+3
+
+
+
+Solution:
+
+We can take the steps in any order, so let's take all the "R" steps first, then all the "L" steps. Starting from x=0, we would then be at position x = s.count('R') - s.count('L'), which is abs(x) away from the origin.
+
+Now our last s.count('?') steps will walk away from the origin, so the final answer is abs(x) + s.count('?').
+
+class Solution:
+    def solve(self, s):
+        return abs(s.count("R") - s.count("L")) + s.count("?")
+        

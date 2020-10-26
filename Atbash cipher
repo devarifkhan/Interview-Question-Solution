@@ -1,0 +1,23 @@
+You are given a lowercase alphabet string text. Return a new string where every character in text is mapped to its reverse in the alphabet, so that a becomes z, b becomes y, c becomes x, and so on.
+
+Example 1
+Input
+
+text = "abcdef"
+Output
+
+"zyxwvu"
+
+
+Solution:
+
+import string
+class Solution:
+    def solve(self, text):
+        s=''
+        reversedList=sorted(string.ascii_lowercase,reverse=True)
+        normallist=list(string.ascii_lowercase)
+        newdict=dict(zip(normallist,reversedList))
+        for i in text:
+            s+=newdict[i]
+        return s

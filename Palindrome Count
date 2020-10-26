@@ -1,0 +1,30 @@
+You are given a string s representing alphabet characters and an integer k. Return the number of palindromes you can construct of length k using only letters in s. Letters can be used more than once.
+
+Example 1
+Input
+
+s = "ab"
+k = 4
+Output
+
+4
+
+
+Solution:
+
+We have to create a palindrome. a palindrome is a mirror from the center. So, If we fix the first half, the second half is automatically fixed.
+
+Image We have K = 4. we have _ _ _ _ . So, We need to only fill the first half (first 2 places). The second half is automatically fixed based on first.
+
+Now, If we have 5 unique chars to choose from. We have 5 possibilities for each filling position.
+So, formula become easy and we (have unique_char)^(number of filling position).
+
+if K is odd, we have one more position to fill then even.
+
+class Solution:
+    def solve(self, s, k):
+        N = len(set(s))
+
+        return N ** (k // 2 + k % 2)
+        
+        

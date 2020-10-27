@@ -1,0 +1,29 @@
+Given a list of integers nums and an integer k, let's create a new set of possible elements { nums[k], nums[nums[k]], nums[nums[nums[k]]], ... } stopping before it's out of index.
+
+Return the size of this set, or -1 if there's a cycle.
+
+Example 1
+Input
+
+nums = [1, 2, 3, 4, 5]
+k = 0
+Output
+
+5
+
+
+Solution:
+
+We apply A[k] while possible, incrementing the answer each time. We also delete the values behind our path, and if we encounter a deleted value we have detected a cycle.
+
+class Solution:
+    def solve(self, A, k):
+        ans = 0
+        while k >= 0 and k < len(A):
+            if A[k] is None:
+                return -1
+            A[k], k = None, A[k]
+            ans += 1
+        return ans
+        
+        

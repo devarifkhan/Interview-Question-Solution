@@ -1,0 +1,30 @@
+Given a list of integers nums, split it into two lists of equal size where the absolute difference between each list's median is as small as possible and return this difference.
+
+Note: length of nums / 2 is guaranteed to be odd.
+
+Example 1
+Input
+
+nums = [1, 9, 7, 4, 3, 6]
+Output
+
+2
+
+Solution:
+
+Denote n = len(nums), and snums as the sorted list of nums.
+
+Suppose the median of the first list is m1 and the median of the second list is m2, and without loss of generality m1 <= m2.
+
+The key insight is that m1 <= snums[n // 2 - 1] and m2 >= snums[n // 2]. The reason is because if both medians were >= snums[n // 2] (for example), then they must both have (n - 2) / 4 elements larger than them, which is impossible.
+
+Also, this equality is possible, eg. the first partition is into snums[::2], and the second partition into snums[1::2]. So the answer is simply snums[n // 2] - snums[n // 2 - 1].
+
+
+class Solution:
+    def solve(self, nums):
+        n = len(nums)
+        nums.sort()
+        return nums[n // 2] - nums[n // 2 - 1]
+        
+        

@@ -1,0 +1,22 @@
+Given a string s consisting only of 1s and 0s, you can delete any two adjacent letters if they are different.
+
+Return the length of the smallest string that you can make if you're able to perform this operation as many times as you want.
+
+Example 1
+Input
+
+s = "11000"
+Output
+
+1
+
+
+Solution:
+
+If a zero and a one exist in s, it is always possible to find two of them that are side by side and delete them.
+
+class Solution:
+    def solve(self, s):
+        return abs(s.count("0") - s.count("1"))
+        
+        

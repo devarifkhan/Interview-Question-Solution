@@ -1,0 +1,33 @@
+You are given a list of integers fighters and a two dimensional list bosses. The fighters list contains 1s and 0s with a 1 representing a fighter. Similarly, each bosses list contains 1s and 0s with a 1 representing a boss.
+
+Given that fighters can beat a bosses row if it contains more fighters than bosses, return a new bosses matrix with defeated boss rows removed.
+
+Example 1
+Input
+
+fighters = [0, 1, 1]
+bosses = [
+    [0, 0, 0],
+    [0, 0, 1],
+    [0, 1, 1],
+    [1, 1, 1]
+]
+Output
+
+[
+    [0, 1, 1],
+    [1, 1, 1]
+]
+
+Solution:
+
+class Solution:
+    def solve(self, fighters, bosses):
+        lst=[]
+        total=sum(fighters)
+        for i in bosses:
+            if sum(i)>=total:
+                lst.append(i)
+        return lst
+        
+        

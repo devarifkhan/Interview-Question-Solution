@@ -1,0 +1,37 @@
+Given a list of integers nums, squeeze from both the left and the right of nums until there is one remaining element. Return the states at each step.
+
+For example, given [1, 2, 3, 4, 5, 6], return these lists:
+
+[[1, 2, 3, 4, 5, 6],
+ [3, 3, 4, 11],
+ [6, 15],
+ [21]]
+Example 1
+Input
+
+nums = [1, 2, 3, 4, 5, 6]
+Output
+
+[
+    [1, 2, 3, 4, 5, 6],
+    [3, 3, 4, 11],
+    [6, 15],
+    [21]
+]
+
+Solution:
+
+You can use easily extract the first and last value of the nums. If nums is of length two, the body will be empty so we can replace it by a 0.
+
+class Solution:
+    def solve(self, nums):
+        ans = [nums]]
+        while len(nums) > 1:
+            head, *nums, tail = nums
+            nums = nums or [0]
+            nums[0] += head
+            nums[-1] += tail
+            ans.append(nums)
+        return ans
+        
+        

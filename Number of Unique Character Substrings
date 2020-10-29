@@ -1,0 +1,27 @@
+Given a string s of lowercase alphabet strings, return the total number of substrings that contain one unique character.
+
+Constraints
+
+n ≤ 10,000 where n is the length of s.
+Example 1
+Input
+
+s = "aab"
+Output
+
+4
+
+
+Solution:
+
+from itertools import groupby
+class Solution:
+    def solve(self, s):
+        ans = 0
+        for _, grp in groupby(s):
+            n = len(list(grp))
+            ans += n * (n + 1) // 2
+        return ans
+        
+        
+        

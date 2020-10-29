@@ -1,0 +1,33 @@
+
+Given an integer n, return whether every rotation of n is prime.
+
+Example 1
+Input
+
+n = 199
+Output
+
+True
+
+
+Solution:
+
+To consider every rotation of n, we can convert to string and take a slice like s[i:] + s[:i].
+To check if a number v is prime, we check whether any d less than sqrt(v) divides v.
+Actually, we only need to check `d=2`, plus odd-valued `d`'s.
+
+
+class Solution:
+    def solve(self, n):
+        def isprime(v):
+            d = 2
+            while d * d <= v:
+                if v % d == 0:
+                    return False
+                d += 1 + (d & 1)
+            return v >= 2
+
+        s = str(n)
+        return all(isprime(int(s[i:] + s[:i])) for i in range(len(s)))
+        
+        

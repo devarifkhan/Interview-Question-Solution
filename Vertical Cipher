@@ -1,0 +1,34 @@
+Given a string s and an integer n, rearrange s into n rows so that s can be read vertically (top-down, left to right).
+
+For example, given s = "abcdefghi" and n = 5, return:
+
+["af",
+ "bg",
+ "ch",
+ "di",
+ "e"]
+Constraints
+
+Length of s ≤ 10000
+n ≤ 1000
+Example 1
+Input
+
+s = "abcdefghi"
+n = 5
+Output
+
+["af", "bg", "ch", "di", "e"]
+
+
+
+Solution:
+
+s[i::n] is a slice of `s` that means every `n` characters of s[i:], starting with the first.
+
+class Solution:
+    def solve(self, s, n):
+        return [s[i::n] for i in range(n)]
+        
+        
+        

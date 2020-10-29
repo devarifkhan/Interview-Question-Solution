@@ -1,0 +1,43 @@
+Given a list of unique integers nums sorted in ascending order, return the minimum i such that nums[i] == i. If there's no solution, return -1.
+
+This should be done in \mathcal{O}(log(n))O(log(n)) time.
+
+Constraints
+
+n ≤ 100,000 where n is the length of nums
+Example 1
+Input
+
+nums = [-5, -2, 0, 3, 4]
+Output
+
+3
+
+
+Solution:
+
+Using standard binary search, we check to see if the index matches the number at that index.
+i) We know if the number is less than the index, the best bet would be to find the number on the right side
+ii) However if we find a match such that index == num[index] we store that number and search elements before that index since we're looking for the smallest index.
+
+Note - This list is already in ascending order, so the clue to follow the fact that any index which has a smaller stored value should be the new starting point.
+
+Space - O(1)
+Tome - O(logn)
+
+class Solution:
+    def solve(self, nums):
+        num = -1
+        s = 0
+        e = len(nums) - 1
+        while s <= e:
+            mid = (s + e) // 2
+            if nums[mid] < mid:
+                s = mid + 1
+            else:
+                if nums[mid] == mid:
+                    num = nums[mid]
+                e = mid - 1
+        return num
+
+

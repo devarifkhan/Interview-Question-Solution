@@ -1,0 +1,29 @@
+
+
+
+Given two integers num and k, return the largest product of k contiguous digits in num.
+
+Note: num is guaranteed to have >= k digits.
+
+Example 1
+Input
+
+num = 41598671
+k = 3
+Output
+
+432
+
+Solution:
+
+class Solution:
+    def solve(self, num, k):
+        nums = str(num)
+        t = []
+        for i in range((len(nums) - k) + 1):
+            p = 1
+            for j in range(i, i + k):
+                p = p * int(nums[j])
+            t.append(p)
+        return max(t)
+

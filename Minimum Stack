@@ -1,0 +1,44 @@
+Implement a stack with the following methods:
+
+MinimumStack() constructs a new instance of a minimum stack
+append(int val) appends val to the stack
+peek() retrieves the last element in the stack
+min() retrieves the minimum value in the stack
+pop() pops and returns the last element in the stack
+Each method should be done in \mathcal{O}(1)O(1) time. You can assume that for peek, min and pop, the stack is non-empty when they are called.
+
+Constraints
+
+n ≤ 100,000 where n is the number of calls to append, peek, min, and pop`.
+Example 1
+Input
+
+methods = ["constructor", "append", "append", "min", "peek", "pop", "pop"]
+arguments = [[], [1], [2], [], [], [], []]
+Output
+
+[None, None, None, 1, 2, 2, 1]
+
+Solution:
+
+class MinimumStack:
+    def __init__(self):
+        self.stack = []
+
+    def append(self, val):
+        minimum = val
+        if self.stack:
+            minimum = min(minimum, self.stack[-1][1])
+
+        self.stack.append((val, minimum))
+
+    def peek(self):
+        return self.stack[-1][0]
+
+    def min(self):
+        return self.stack[-1][1]
+
+    def pop(self):
+        return self.stack.pop()[0]
+        
+        

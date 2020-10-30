@@ -1,0 +1,21 @@
+ Given a list of lowercase alphabet strings words, return the longest common prefix.
+
+Example 1
+Input
+
+words = ["anthony", "ant", "antigravity"]
+Output
+
+"ant"
+
+Solution:
+
+class Solution:
+    def solve(self, words):
+        ans = ""
+        for x in zip(*words):
+            if len(set(x)) == 1:
+                ans += x[0]
+            else:
+                break
+        return ans

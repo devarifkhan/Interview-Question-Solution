@@ -1,0 +1,19 @@
+Given a positive integer n representing the amount of cents you have, return the formatted currency amount. For example, given n = 123456, return "1,234.56".
+
+Example 1
+Input
+
+n = 132
+Output
+
+"1.32"
+
+Solution:
+
+We can use Python's built in standard format specifiers, which conveniently have an option for grouping currencies.
+
+class Solution:
+    def solve(self, n):
+        return "{:,.2f}".format(n / 100)
+        
+        

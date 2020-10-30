@@ -1,0 +1,28 @@
+You are given an integer n representing the length of an n by n board. Remove all cells that are diagonal to one of the four corners (top left, top right, bottom right, and bottom left) and return the number of empty cells leftover.
+
+For example, given n = 4
+
+X O O X
+O X X O
+O X X O
+X O O X
+We see there's 8 empty "O" squares.
+
+Example 1
+Input
+
+n = 4
+Output
+
+8
+
+
+Solution:
+
+All n * n squares start empty, and 2 * n are removed from diagonals. Then, if n is odd, one center square was counted as removed twice, so we add it back in.
+
+class Solution:
+    def solve(self, n):
+        return n * n - 2 * n + (n & 1)
+        
+        

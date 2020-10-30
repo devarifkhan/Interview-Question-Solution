@@ -1,0 +1,15 @@
+Give a list of numbers nums, return the number of elements that are in the correct indices, if the list were to be sorted.
+
+Example 1
+Input
+
+nums = [1, 7, 3, 4, 10]
+Output
+
+2
+
+Solution:
+
+class Solution:
+    def solve(self, nums):
+        return sum([i==j for i,j in zip(nums,sorted(nums))])

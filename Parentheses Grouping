@@ -1,0 +1,26 @@
+ Given a string s containing balanced parentheses "(" and ")", split them into the maximum number of balanced groups.
+
+Constraints
+
+n ≤ 100,000 where n is length of s.
+Example 1
+Input
+
+s = "()()(()())"
+Output
+
+["()", "()", "(()())"]
+
+Solution:
+
+class Solution:
+    def solve(self, s):
+        ans = []
+        anchor = bal = 0
+        for i, j in enumerate(s):
+            bal += 1 if j == '(' else -1
+            if bal == 0:
+                ans.append(s[anchor:i + 1])
+                anchor = i + 1
+        return ans
+

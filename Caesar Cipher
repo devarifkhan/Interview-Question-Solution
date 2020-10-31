@@ -1,0 +1,33 @@
+You are given a lowercase alphabet string s, and an offset integer k. Replace every letter in s with a letter k positions further along the alphabet.
+
+Note: If the letter overflows past a or z, it gets wrapped around the other side.
+
+Example 1
+Input
+
+s = "abc"
+k = 2
+Output
+
+"cde"
+
+
+Solution:
+
+The idea is simple, I keep the letters in a string going from a to z in order to be easy to retrieve the index of a letter. 
+For every letter of the string, I retrieve the index, I add the offset and in order to keep it from 0 to 25 (letters in English alphabet), 
+I use mod 26 (% 26). I stock all the new letters in a list and I use join to create a string.
+
+In terms of time complexity, let's say that n=26 the length of the string and m the list of strings. 
+We have O(n) for the index operation that are doing for every letter of s, so O(m∗n). The join operation will be O(m). As a result we have O(m∗n)+O(m). n=26, 
+so it's (26∗m)+O(m) = O(m).
+So the algorithm is liniar depending on the length of the string.
+
+
+import string
+class Solution:
+    def solve(self, s, k):
+        l=string.ascii_lowercase
+        return ''.join([l[(l.index(i)+k)%26] for i in s])
+        
+        

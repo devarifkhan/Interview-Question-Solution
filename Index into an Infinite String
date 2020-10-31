@@ -1,0 +1,20 @@
+You are given a string s and two integers i and j where i < j. Let's say p is an infinite string of s repeating forever. Return the substring of p from indexes [i, j).
+
+Example 1
+Input
+
+s = "tiger"
+i = 6
+j = 8
+Output
+
+"ig"
+
+Solution:
+
+s[k % len(s)] tells us the `k`-th position in s if the string is repeated forever.
+
+class Solution:
+    def solve(self, s, i, j):
+        return "".join(s[k % len(s)] for k in range(i, j))
+

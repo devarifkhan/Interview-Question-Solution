@@ -1,0 +1,31 @@
+Given a list of integers prices representing prices of cars for sale, and a budget k, return the maximum number of cars you can buy.
+
+Constraints
+
+n ≤ 100,000 where n is the length of prices
+Example 1
+Input
+
+prices = [90, 30, 20, 40, 90]
+k = 95
+Output
+
+3
+
+Solution:
+
+Since we just want the most cars, its always better to buy a cheaper car first.
+
+This means we can consider buying the cars greedily in order from cheapest to most expensive.
+
+class Solution:
+    def solve(self, prices, k):
+        prices.sort()
+        ans=0
+        for i in prices:
+            if k>=i:
+                k-=i
+                ans+=1
+        return ans
+        
+        

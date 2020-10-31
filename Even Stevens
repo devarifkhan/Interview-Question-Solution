@@ -1,0 +1,39 @@
+Given an integer list nums, swap every consecutive even integer with each other.
+
+Constraints
+
+n ≤ 100,000 where n is the length of nums
+Example 1
+Input
+
+nums = [2, 3, 4, 6, 8]
+Output
+
+[4, 3, 2, 8, 6]
+
+Solution:
+
+If we encounter an even number and we don't have a previously saved index then we save its index.
+If we encounter an even number and we have a previously saved index then 
+we swap the number at the current index with the number at the saved index.
+We then reset the saved index so we won't swap it again.
+
+Complexity
+
+Time complexity: \mathcal{O}(n)O(n)
+Space complexity: \mathcal{O}(1)O(1) (the input is modified in-place)
+
+class Solution:
+    def solve(self, nums):
+        last=-1
+        for i,j in enumerate(nums):
+            if not j & 1:
+                if last >=0:
+                    nums[i],nums[last]=nums[last],nums[i]
+                    last=-1
+        
+                else:
+                    last=i
+        
+        return nums
+        

@@ -1,0 +1,38 @@
+Implement a data structure with the following methods:
+
+add(int val) adds the value val to the data structure
+find(int val) returns whether there are two numbers whose sum equals to val
+Constraints
+
+n ≤ 10,000 where n is the number of times add will be called
+m ≤ 1,000 where m is the number of times find will be called
+Example 1
+Input
+
+methods = ["constructor", "add", "find", "add", "find"]
+arguments = [[], [5], [10], [6], [11]]
+Output
+
+[None, None, False, None, True]
+
+
+Solution:
+
+class TwoSum:
+    def __init__(self):
+        self.l = []
+
+    def add(self, val):
+        self.l.append(val)
+
+    def find(self, val):
+        prev = set()
+        for i, num in enumerate(self.l):
+            needed_val = val - num
+            if needed_val in prev:
+                return True
+            else:
+                prev.add(num)
+        return False
+        
+        

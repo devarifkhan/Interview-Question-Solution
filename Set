@@ -1,0 +1,37 @@
+
+Implement a set data structure with the following methods:
+
+Set() constructs a new instance of a set
+add(int val) adds val to the set
+exists(int val) returns whether val exists in the set
+remove(int val) removes the val in the set
+This should be implemented without using built-in set.
+
+Constraints
+
+n ≤ 100,000 where n is the number of calls to add, exists and remove
+Example 1
+Input
+
+methods = ["constructor", "add", "exists", "remove", "exists"]
+arguments = [[], [1], [1], [1], [1]]
+Output
+
+[None, None, True, None, False]
+
+Solution:
+
+class Set:
+    def __init__(self):
+        self.s = {}
+
+    def add(self, val):
+        self.s[val] = val
+
+    def exists(self, val):
+        return val in self.s
+
+    def remove(self, val):
+        if val in self.s:
+            del self.s[val]
+            

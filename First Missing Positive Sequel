@@ -1,0 +1,24 @@
+Given a sorted unique integer list of size n in increasing order, find the first positive integer between [1, n+1] not in the array.
+
+Example 1
+Input
+
+arr = [2, 3, 4]
+Output
+
+1
+
+
+Solution:
+
+class Solution:
+    def solve(self, arr):
+        ct = 1
+        for i in arr:
+            if i == ct:
+                ct += 1
+            else:
+                pass
+        return ct
+        
+        

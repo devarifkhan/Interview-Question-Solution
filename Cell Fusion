@@ -1,0 +1,28 @@
+You are given a list of integers cells, representing sizes of different cells. In each iteration, the two largest cells a and b interact according to these rules:
+
+If a = b, they both die.
+Otherwise, the two cells merge and their size becomes floor((a + b) / 3).
+Return the size of the last cell or return -1 if there's no cell is remaining.
+
+Example 1
+Input
+
+cells = [10, 30, 30, 20]
+Output
+
+10
+
+Solution:
+
+from heapq import heapify, heappop, heappush
+class Solution:
+    def solve(self, cells):
+        cells = [-x for x in cells]
+        heapify(cells)
+        while len(cells) > 1:
+            a, b = -heappop(cells), -heappop(cells)
+            if a != b:
+                heappush(cells, -((a + b) // 3))
+        return -cells[0] if cells else -1
+        
+        

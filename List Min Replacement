@@ -1,0 +1,35 @@
+Given a list of integers nums, replace every nums[i] with the smallest integer left of i. Replace nums[0] with 0.
+
+Constraints
+
+n ≤ 100,000 where n is the length of nums
+Example 1
+Input
+
+nums = [10, 5, 7, 9]
+Output
+
+[0, 10, 5, 5]
+
+
+Solution:
+
+class Solution:
+    def solve(self, nums):
+        n = len(nums)  # Get the size of the list
+
+        if n == 0:
+            return nums  # If list is empty just return nums
+
+        min_val = nums[0]  # Initialize min_val to nums[0]
+
+        # Iterate from left to right starting from index 1
+        for i in range(1, n):
+            no = nums[i]  # Store nums[i] in no
+            nums[i] = min_val  # Set nums[i] to the min_val so far
+            min_val = min(min_val, no)  # Update min_val
+
+        nums[0] = 0  # Set nums[0] to zero
+        return nums
+        
+        

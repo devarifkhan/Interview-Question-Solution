@@ -1,0 +1,21 @@
+Given a list of positive integers nums, return the number of valid pairs of indices (i, j), with i < j, such that A[i] + A[j] is an odd number.
+
+Constraints
+
+n ≤ 100,000 where n is the length of nums
+Example 1
+Input
+
+nums = [3, 2, 4]
+Output
+
+2
+
+Solution:
+
+class Solution:
+    def solve(self, nums):
+        odds = sum(v & 1 for v in nums)
+        return odds*(len(nums)-odds)
+        
+        

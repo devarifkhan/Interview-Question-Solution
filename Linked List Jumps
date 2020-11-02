@@ -1,0 +1,33 @@
+You are given a singly linked list node containing positive integers. Return the same linked list where every node's next points to the node val nodes ahead. If there's no such node, next should point to null.
+
+Connstraints
+
+n ≤ 100,000 where n is the number of nodes in node
+Example 1
+Input
+
+node = 1 → 2 → 9 → 4 → 8
+Output
+
+1 → 2 → 4
+
+Solution:
+
+# class LLNode:
+#     def __init__(self, val, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def solve(self, node):
+        head = node
+
+        curr = head
+        while curr:
+            last = curr
+            cnt = 0
+            while cnt < last.val and curr:
+                curr = curr.next
+                cnt += 1
+            last.next = curr
+
+        return head

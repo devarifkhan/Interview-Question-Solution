@@ -1,0 +1,23 @@
+You are given a string s and an integer k. Each character in the string is either '.' or 'x', where '.' represents an empty space and 'x' represents a person.
+
+Return whether it's possible to choose a position to stand on such that the distance between you and the closest person to you is at least k. (The distance between each neighbouring indices is 1).
+
+Example 1
+Input
+
+s = "x.."
+k = 2
+Output
+
+True
+
+
+Solution:
+
+class Solution:
+    def solve(self, s, k):
+        inner = "." * (2 * k - 1)
+        outer = "." * k
+        return inner in s or s.startswith(outer) or s.endswith(outer)
+        
+        

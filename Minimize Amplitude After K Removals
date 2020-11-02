@@ -1,0 +1,30 @@
+You are given a list of integers nums, and an integer k. Given that you must remove k elements in nums, return the minimum max(nums) - min(nums) value we can achieve.
+
+Constraints
+
+1 ≤ n ≤ 100,000 where n is the length of nums
+k < n
+Example 1
+Input
+
+nums = [2, 10, 14, 12, 30]
+k = 2
+Output
+
+4
+
+Solution:
+
+class Solution:
+    def solve(self, nums, k):
+        nums.sort()
+        j = len(nums)
+        res = float('inf')
+        for i in range(k,-1,-1):
+            cand = nums[j-1] - nums[i]
+            if cand < res:
+                res = cand
+            j -= 1
+        return res
+        
+        

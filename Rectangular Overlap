@@ -1,0 +1,26 @@
+You are given two lists of integers rect0 and rect1 representing coordinates (x0, y0, x1, y1) of two rectangles. (x0, y0) is the bottom left coordinate and (x1, y1) is the upper right coordinate.
+
+Return whether the two rectangles overlap.
+
+Note: if two rectangles touch only in their perimeters, they don't overlap.
+
+Example 1
+Input
+
+rect0 = [0, 0, 10, 10]
+rect1 = [10, 10, 30, 30]
+Output
+
+False
+
+
+Solution:
+
+class Solution:
+    def solve(self, rect0, rect1):
+        l0, b0, r0, t0 = rect0
+        l1, b1, r1, t1 = rect1
+        return max(b0, b1) < min(t0, t1) and max(l0, l1) < min(r0, r1)
+        
+        
+        

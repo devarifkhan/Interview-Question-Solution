@@ -1,0 +1,43 @@
+You are given a two-dimensional integer matrix of 1s and 0s, representing a rectangular chess board, where 0 is an empty cell and 1 is a knight. The knight is able to move two squares away horizontally and one square vertically, or two squares vertically and one square horizontally.
+
+Return whether any two knights are attacking each other.
+
+For example, given the following board, return true.
+
+0 0 0 0 0
+0 1 0 0 0
+0 0 0 1 0
+Given the following board, return false.
+
+0 1 0 0 1
+1 1 0 0 1
+0 1 0 0 1
+Example 1
+Input
+
+matrix = [
+    [1, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0]
+]
+Output
+
+False
+
+Solution:
+
+class Solution:
+    def solve(self, A):
+        R, C = len(A), len(A[0])
+
+        for r in range(R):
+            for c in range(C):
+                if A[r][c]:
+                    for nr, nc in ((r + 1, c - 2), (r + 1, c + 2), (r + 2, c - 1), (r + 2, c + 1)):
+                        if 0 <= nr < R and 0 <= nc < C and A[nr][nc]:
+                            return True
+        return False
+        
+        

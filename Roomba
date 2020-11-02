@@ -1,0 +1,25 @@
+A Roomba robot is currently sitting in a cartesian plane at (0, 0). You are given a list of its moves that it will make, containing NORTH, SOUTH, WEST, and EAST.
+
+Return whether after its moves it will end up in the coordinate (x, y).
+
+Example 1
+Input
+
+moves = ["NORTH", "EAST"]
+x = 1
+y = 1
+Output
+
+True
+
+
+Solution:
+
+class Solution:
+    def solve(self, moves, x, y):
+        return (
+            moves.count("EAST") - moves.count("WEST") == x
+            and moves.count("NORTH") - moves.count("SOUTH") == y
+        )
+        
+        

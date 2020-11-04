@@ -1,0 +1,40 @@
+You are given a 2D matrix where each cell represents number of coins in that cell. Assuming we start at matrix[0][0], and can only move right or down, find the maximum number of coins you can collect by the bottom right corner.
+
+For example, in the following matrix:
+
+[[0, 3, 1, 1],
+ [2, 0, 0, 4],
+ [1, 5, 3, 1]]
+The most we can collect is 0 + 2 + 1 + 5 + 3 + 1 = 12 coins.
+
+Constraints
+
+n, m ≤ 100 where n and m are the number of rows and columns in matrix.
+Example 1
+Input
+
+matrix = [
+    [0, 3, 1, 1],
+    [2, 0, 0, 4]
+]
+Output
+
+9
+
+Solution:
+
+class Solution:
+    def solve(self, A):
+        for r in range(1, len(A)):
+            A[r][0] += A[r - 1][0]
+
+        for c in range(1, len(A[0])):
+            A[0][c] += A[0][c - 1]
+
+        for r in range(1, len(A)):
+            for c in range(1, len(A[0])):
+                A[r][c] += max(A[r - 1][c], A[r][c - 1])
+
+        return A[-1][-1]
+        
+        

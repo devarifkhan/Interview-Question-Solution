@@ -1,0 +1,41 @@
+You are given a list of unique integers nums that is sorted in ascending order and is rotated at some pivot point. Find the maximum number in the rotated list.
+
+Can you do it in \mathcal{O}(\log{}n)O(logn)?
+
+Constraints
+
+n ≤ 100,000 where n is the length of nums.
+Example 1
+Input
+
+arr = [6, 7, 8, 1, 4]
+Output
+
+8
+
+Solution:
+
+class Solution:
+    def solve(self, arr):
+        left, right = 0, len(arr) - 1
+        if len(arr) == 1:
+            return arr[0]
+
+        while left <= right:
+            mid = (left + right) // 2
+            # if we have reached the right end of the array
+            if mid == len(arr) - 1 and arr[mid] > arr[mid - 1]:
+                return arr[mid]
+            # else check if it is the largest element
+            elif arr[mid] > arr[mid + 1]:
+                return arr[mid]
+            # else check if the result lies in right half
+            elif arr[mid] >= arr[left]:
+                left = mid + 1
+            # else the result lies in the left half
+            else:
+                right = mid - 1
+                
+                
+                
+                

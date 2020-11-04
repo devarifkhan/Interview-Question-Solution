@@ -1,0 +1,51 @@
+Given a singly linked list l0 and another linked list l1, each representing a number with least significant digits first, return the summed linked list.
+
+For example, given
+
+1 -> 2 -> 1
+3 -> 9 -> 1
+Return
+
+4 -> 1 -> 3
+Note: Each value in the linked list is guaranteed to be between 0 and 9.
+
+Example 1
+Input
+
+l0 = 6 → 4
+l1 = 4 → 7
+Output
+
+0 → 2 → 1
+
+Solution:
+
+# class LLNode:
+#     def __init__(self, val, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def solve(self, l1, l2):
+        sum = l1.val + l2.val
+        carry = int(sum / 10)
+        
+        l3 = LLNode(sum % 10)
+        p1 = l1.next
+        p2 = l2.next
+        p3 = l3
+        while (p1 != None or p2 != None):
+            sum = carry + (p1.val if p1 else 0) + (p2.val if p2 else 0)
+            carry = int(sum / 10)
+            p3.next = LLNode(sum % 10)
+            p3 = p3.next
+            p1 = p1.next if p1 else None
+            p2 = p2.next if p2 else None
+        
+        if (carry > 0):
+            p3.next = LLNode(carry)
+        
+        return l3
+        
+        
+        
+        

@@ -1,0 +1,31 @@
+You are given a list of integers cards, and are looking to order the cards in a way so that they are revealed in ascending order.
+
+The cards are revealed in this manner: the top card is removed and revealed and then next card is moved to the back. This is repeated until there's no more cards.
+
+Return an ordering of the cards such that they are revealed in ascending order.
+
+Constraints
+
+n ≤ 100,000 where n is the length of cards
+Example 1
+Input
+
+cards = [1, 2, 3, 4, 5]
+Output
+
+[1, 5, 2, 4, 3]
+
+Solution:
+
+import collections
+class Solution:
+    def solve(self, cards):
+        dq = collections.deque()
+        for c in sorted(cards, key=lambda x: -x):
+            s=dq.rotate()
+            dq.appendleft(c)
+
+        return list(dq)
+        
+        
+        

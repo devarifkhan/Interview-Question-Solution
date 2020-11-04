@@ -1,0 +1,44 @@
+Given two strings s0 and s1, return the number of substrings where s1 contains any permutation of s0.
+
+Example 1
+Input
+
+s0 = "abc"
+s1 = "bcabxabc"
+Output
+
+3
+
+Solution:
+
+
+class Solution:
+    def solve(self, s0, s1):
+        n = len(s0)
+
+        count_0 = dict()
+        for c in s0:
+            if c in count_0:
+                count_0[c] += 1
+            else:
+                count_0[c] = 1
+
+        res = 0
+        count_1 = dict()
+        for i, c in enumerate(s1):
+            if c in count_1:
+                count_1[c] += 1
+            else:
+                count_1[c] = 1
+
+            if i >= n:
+                count_1[s1[i - n]] -= 1
+                if count_1[s1[i - n]] == 0:
+                    del count_1[s1[i - n]]
+
+            if count_0 == count_1:
+                res += 1
+
+        return res
+        
+        

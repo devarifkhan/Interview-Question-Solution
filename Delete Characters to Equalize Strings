@@ -1,0 +1,39 @@
+Given two strings a and b, consider an operation where we delete any character in either string. Return the minimum number of operations required such that both strings are equal.
+
+Constraints
+
+n ≤ 1,000 where n is the length of a
+m ≤ 1,000 where m is the length of b
+Example 1
+Input
+
+a = "zyyx"
+b = "yfyx"
+Output
+
+2
+
+
+Solution:
+
+from functools import lru_cache
+
+
+class Solution:
+    def solve(self, a, b):
+
+        na, nb = len(a), len(b)
+
+        @lru_cache(None)
+        def dp(i, j):
+            if i == na:
+                return nb - j
+            if j == nb:
+                return na - i
+            if a[i] == b[j]:
+                return dp(i + 1, j + 1)
+            return 1 + min(dp(i + 1, j), dp(i, j + 1))
+
+        return dp(0, 0)
+        
+        

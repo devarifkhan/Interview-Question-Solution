@@ -1,0 +1,31 @@
+Given a list of strings lst and a list of integers p, reorder lst so that every lst[i] gets placed to p[i].
+
+This should be done in \mathcal{O}(1)O(1) space.
+
+Constraints
+
+n ≤ 100,000 where n is the length of lst
+Example 1
+Input
+
+lst = ["a", "b", "c", "d"]
+p = [3, 0, 1, 2]
+Output
+
+["b", "c", "d", "a"]
+
+Solution:
+
+
+class Solution:
+    def solve(self, lst, p):
+        n = len(lst)
+
+        res = [0] * n
+        
+        for i, idx in enumerate(p):
+            res[idx] = lst[i]
+        
+        return res
+        
+        

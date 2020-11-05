@@ -1,0 +1,65 @@
+Given the strings text, word0, and word1, return the smallest distance between any two occurrences of word0 and word1 in text, measured in number of words. If either word0 or word1 doesn't appear in text, return -1.
+
+Constraints
+
+word0 and word1 are different.
+n ≤ 200,000 where n is the length of text.
+Example 1
+Input
+
+text = "dog cat hello cat dog dog hello cat world"
+word0 = "hello"
+word1 = "world"
+Output
+
+1
+
+
+Solution:
+
+
+class Solution:
+    def solve(self, s, w1, w2):
+        if w1 == w2:
+            return 0
+    
+        # get individual words in a list
+        words = s.split(" ")
+        n = len(words)
+        
+        if w1 not in words or w2 not in words:
+            return -1
+    
+        # assume total length of the string as
+        # minimum distance
+        min_dist = n + 1
+    
+        # Find the first occurrence of any of the two
+        # numbers (w1 or w2) and store the index of
+        # this occurrence in prev
+        for i in range(n):
+    
+            if words[i] == w1 or words[i] == w2:
+                prev = i
+                break
+    
+        # Traverse after the first occurrence
+        while i < n:
+            if words[i] == w1 or words[i] == w2:
+    
+                # If the current element matches with
+                # any of the two then check if current
+                # element and prev element are different
+                # Also check if this value is smaller than
+                # minimum distance so far
+                if words[prev] != words[i] and (i - prev) < min_dist:
+                    min_dist = i - prev - 1
+                    prev = i
+                else:
+                    prev = i
+            i += 1
+    
+        return min_dist
+        
+        
+        

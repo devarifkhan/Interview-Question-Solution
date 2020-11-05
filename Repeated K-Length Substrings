@@ -1,0 +1,30 @@
+Given a string s and an integer k, return the number of k-length substrings that occur more than once in s.
+
+Constraints
+
+n ≤ 100,000 where n is the length of s.
+k ≤ 10
+Example 1
+Input
+
+s = "abcdabc"
+k = 3
+Output
+
+1
+
+
+Solution:
+
+class Solution:
+    def solve(self, s, k):
+        from collections import Counter
+
+        seen = []
+        for i in range(len(s) - k + 1):
+            t = s[i : i + k]
+            seen.append(t)
+        s = Counter(seen)
+        return sum(1 for x in s.values() if x > 1)
+        
+        

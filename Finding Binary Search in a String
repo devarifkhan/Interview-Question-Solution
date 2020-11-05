@@ -1,0 +1,26 @@
+Given a lowercase alphabet string s, return whether it's possible to pick some subsequence of characters in s such that:
+
+The difference of any two successive indexes of the characters is equal
+The characters form the string "binarysearch"
+Constraints
+
+1 ≤ n ≤ 1,000 where n is the length of s.
+Example 1
+Input
+
+s = "bziznzazrzyzszezazrzczh"
+Output
+
+True
+
+Solution:
+
+class Solution:
+    def solve(self, s):
+        n = len(s)
+        for d in range(1, n // 11 + 1):
+            for i in range(n - 11 * d):
+                if all(s[i + j * d] == c for j, c in enumerate("binarysearch")):
+                    return True
+        return False
+        

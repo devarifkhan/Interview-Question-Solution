@@ -1,0 +1,21 @@
+You are given a list of non-negative integers nums. Return the sum of every concatenation of every pair of numbers in nums. Note that pairs (i, j) and (j, i) are considered different.
+
+Constraints
+
+n ≤ 100,000 where n is the length of nums
+Example 1
+Input
+
+nums = [10, 2]
+Output
+
+1344
+
+Solution:
+
+class Solution:
+    def solve(self, nums):
+        x = len(nums) + sum(10 ** len(str(x)) for x in nums)
+        return sum(i * x for i in nums)
+        
+        

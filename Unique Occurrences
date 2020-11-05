@@ -1,0 +1,26 @@
+Given a list of integers nums, return whether the number of occurrences of every value in the array is unique.
+
+Note: Numbers can be negative.
+
+Constraint
+
+n ≤ 100,000 where n is the length of nums
+Example 1
+Input
+
+nums = [5, 3, 1, 8, 3, 1, 1, 8, 8, 8]
+Output
+
+True
+
+
+Solution:
+
+from collections import Counter
+
+class Solution:
+    def solve(self, nums):
+        d = Counter(nums)
+        return len(set(d.values())) == len(d)
+        
+        

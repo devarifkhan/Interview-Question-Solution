@@ -1,0 +1,39 @@
+Given a list of integers nums and an integer target, return the number of triples i < j < k that exist such that nums[i] + nums[j] + nums[k] < target.
+
+Constraints
+
+n ≤ 1,000 where n is the length of nums
+Example 1
+Input
+
+nums = [-3, 5, 3, 2, 7]
+target = 9
+Output
+
+5
+
+
+
+Solution:
+
+import bisect
+
+class Solution:
+    def solve(self, nums, target):
+        N = len(nums)
+        ans = 0
+
+        nums.sort()
+
+        for i in range(N):
+            for j in range(i + 1, N):
+                s = target - (nums[i] + nums[j])
+                k = bisect.bisect_left(nums, s)
+
+                if k > j:
+                    ans += k - j - 1
+
+        return ans
+        
+        
+       

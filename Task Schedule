@@ -1,0 +1,36 @@
+. Each task takes one minute to complete, but you must wait k minutes between doing two tasks of the same type. At any time, you can be doing a task or waiting.
+
+Return the smallest amount of time it takes to complete all the tasks.
+
+Constraints
+
+n ≤ 100,000 where n is the length of tasks
+Example 1
+Input
+
+nums = [2, 2, 2, 3, 3, 2]
+k = 1
+Output
+
+7
+
+
+
+Solution:
+
+from collections import Counter
+
+class Solution:
+    def solve(self, nums, k):
+        c = Counter(nums)
+        ans = 0
+        while c:
+            common = c.most_common(k+1)
+            for task, freq in common:
+                c[task] -= 1
+                if c[task] == 0:
+                    del c[task]
+            ans += k + 1 if c else len(common)
+        return ans
+        
+        

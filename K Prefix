@@ -1,0 +1,30 @@
+Given a list of integers nums and an integer k, return the maximum possible i where nums[0] + nums[1] + ...  + nums[i] ≤ k. Return -1 if no valid i exists.
+
+Constraints
+
+n ≤ 1,000 where n is the length of nums.
+-1,000 ≤ nums[i] ≤ 1,000
+k ≤ 10^9
+Example 1
+Input
+
+nums = [3, -5, 4, 1, 6]
+k = 4
+Output
+
+3
+
+Solution:
+
+class Solution:
+    def solve(self, nums, k):
+        nsum = sum(nums)
+        while len(nums) > 0:
+            if nsum <= k:
+                return len(nums) - 1
+            nsum -= nums[-1]
+            nums.pop()
+        return -1
+        
+        
+        

@@ -1,0 +1,29 @@
+You are given a two-dimensional integer matrix matrix containing 1s and 0s. For each row in matrix, reverse the row. Then, flip each value in the matrix such that any 1 becomes 0 and any 0 becomes 1.
+
+Constraints
+
+n, m ≤ 250 where n and m are the number of rows and columns in matrix
+Example 1
+Input
+
+matrix = [
+    [1, 1, 0],
+    [0, 0, 1],
+    [0, 0, 0]
+]
+Output
+
+[
+    [1, 0, 0],
+    [0, 1, 1],
+    [1, 1, 1]
+]
+
+
+Solution:
+
+class Solution:
+    def solve(self, matrix):
+        return [[1^i for i in row[::-1]] for row in matrix]
+        
+        

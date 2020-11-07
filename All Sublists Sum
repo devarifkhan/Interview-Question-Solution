@@ -1,0 +1,25 @@
+Given a list of integers nums, consider every contiguous sublist. Sum each of these sublists and return the sum of all these values. Mod the result by 10 ** 9 + 7.
+
+Constraints
+
+n ≤ 100,000 where n is the length of nums
+Example 1
+Input
+
+nums = [2, 3, 5]
+Output
+
+33
+
+Solution:
+class Solution:
+    def solve(self, nums):
+        N = len(nums)
+        ans = 0
+        for i in range(len(nums)):
+            n = nums[i]
+            ans += (i + 1) * (N - i) * n
+        return ans % 1000000007
+        
+        
+        

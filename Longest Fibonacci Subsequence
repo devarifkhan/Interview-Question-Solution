@@ -1,0 +1,42 @@
+You are given a list of strictly increasing positive integers nums. Return the length of the longest subsequence A of length at least 3 such that A[i] = A[i - 1] + A[i - 2] for all i > 1.
+
+Constraints
+
+n ≤ 1,000 where n is the length of nums
+Example 1
+Input
+
+nums = [1, 2, 3, 4, 5]
+Output
+
+4
+
+
+Solution:
+class Solution:
+    def solve(self, A):
+        S = set(A)
+        maxLen = 0
+        n=len(A)
+    
+        for i in range(0, n):
+            for j in range(i + 1, n):
+    
+                x = A[j]
+                y = A[i] + A[j]
+                length = 2
+    
+                # check until next fib
+                # element is found
+                while y in S:
+                    # next element of fib subseq
+                    z = x + y
+                    x = y
+                    y = z
+                    length += 1
+                    maxLen = max(maxLen, length)
+    
+        return maxLen if maxLen >= 3 else 0
+        
+        
+       

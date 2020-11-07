@@ -1,0 +1,40 @@
+Write a program that determines the smallest number of square numbers that sum up to N.
+
+Here are a few examples:
+
+Given N = 4, return 1 (4)
+Given N = 17, return 2 (16 + 1)
+Given N = 18, return 2 (9 + 9)
+Constraints
+
+1 ≤ N ≤ 10000
+Example 1
+Input
+
+n = 4
+Output
+
+1
+
+
+Solution:
+
+class Solution:
+    def solve(self, n):
+        m = n
+        from math import ceil, floor, sqrt
+        p=sqrt(n)
+        if ceil(p) == floor(p):
+            return 1
+        while n & 3 == 0:
+            n >>= 2
+        if n & 7 == 7:
+            return 4
+        n = m
+        for i in range(1, int(p) + 1):
+            j = sqrt(n - i * i)
+            if ceil(j) == floor(j):
+                return 2
+        return 3
+        
+        

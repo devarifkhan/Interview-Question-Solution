@@ -1,0 +1,34 @@
+You are given two non-empty strings a and b that are the same length. Partition them into substrings such that each pair of a and b substring is the same size and they are anagrams of each other. Return the cut indexes such that it results in the largest number of cuts of a and b. Return the empty list if no result exists.
+
+Constraints
+
+n ≤ 100,000 where n is the length of a and b
+Example 1
+Input
+
+a = "catdogwolf"
+b = "actgodflow"
+Output
+
+[0, 2, 3, 6]
+
+
+Solution:
+
+from collections import Counter
+class Solution:
+    def solve(self, a, b):
+        intervals = []
+        ca = Counter(a)
+        cb = Counter(b)
+        if ca != cb:
+            return []
+        for x in reversed(range(len(a))):
+            ca[a[x]] -= 1
+            cb[b[x]] -= 1
+            if ca == cb:
+                intervals.append(x)
+        return sorted(intervals)
+        
+        
+        

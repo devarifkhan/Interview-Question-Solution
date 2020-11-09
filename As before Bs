@@ -1,0 +1,34 @@
+Given a string s consisting only of A and B, return the minimum number of letters that need to be deleted from s to get all occurrences of As before all occurrences of Bs.
+
+For example, given s = AABBAB, return 1 as we can delete the last A to achieve this.
+
+Constraints
+
+n ≤ 100,000 where n is the length of s
+Example 1
+Input
+
+s = "AABBAB"
+Output
+
+1
+
+Solution:
+
+class Solution:
+    def solve(self, s):
+        a_right = s.count("A")
+        b_left = 0
+
+        ans = a_right
+        for i, c in enumerate(s):
+            if c == "A":
+                a_right -= 1
+            else:
+                b_left += 1
+
+            ans = min(ans, a_right + b_left)
+        return ans
+        
+        
+        

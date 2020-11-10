@@ -1,0 +1,33 @@
+Given a string s containing round, curly, and square open and closing brackets, return whether the brackets are balanced (well-formed).
+
+For example, given the string ([])[]({}), you should return true.
+
+Given the string ([)] or (((), you should return false.
+
+Constraints
+
+n ≤ 100,000 where n is the length of s
+Example 1
+Input
+
+s = "[(])"
+Output
+
+False
+
+
+Solution:
+
+class Solution:
+    def solve(self, s):
+        mapping = dict(zip('({[', ')}]'))
+        queue = []
+        for letter in s:
+            if letter in mapping:
+                queue.append(mapping[letter])
+            elif not (queue and letter == queue.pop()):
+                return False
+        return not queue
+        
+        
+        

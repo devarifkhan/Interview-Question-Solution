@@ -1,0 +1,46 @@
+An arithmetic sequence is a list of integers where the difference between one integer and the next is the same.
+
+Given a list of integers nums, return the number of arithmetic subsequences of length ≥ 3.
+
+Constraints
+
+n ≤ 1,000 where n is length of nums.
+Example 1
+Input
+
+nums = [5, 11, 12, 7, 9, 13]
+Output
+
+3
+
+
+Solution:
+
+Intuition
+Complexity
+O(N^2) time and O(N^2) space
+
+Dynamic Programming
+State: Let DP[i][k] = number of subsequences ending with nums[i] and with difference of k.
+Transition: DP[i][k] += DP[j][k] + 1 for j < i.
+We can do two for loops, and do DP[i][k] += DP[j][k] + 1for j < i. And res += DP[j][k] each time we find the j.
+
+Return: the running sum of all DP[j][k]. To avoid counting length 2's, we add DP[j][k], not DP[i][k] when calculating DP[i][k].
+
+class Solution:
+    def solve(self, nums):
+        dp = {}
+        n = len(nums)
+        res = 0
+        for i in range(n):
+            for j in range(i):
+                diff = nums[i] - nums[j]
+
+                prev = dp.get((i, diff), 0)
+                prevprev = dp.get((j, diff), 0)
+                dp[(i, diff)] = prev + prevprev + 1
+
+                res += prevprev
+        return res
+
+

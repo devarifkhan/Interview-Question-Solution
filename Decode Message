@@ -1,0 +1,40 @@
+Given the mapping a = 1, b = 2, ... z = 26, and an encoded message message (as a string), count the number of ways it can be decoded.
+
+For example, the message 111 should return 3, since it could be decoded as aaa, ka, and ak.
+
+Constraints
+
+n ≤ 100,000 where n is the length of message
+Example 1
+Input
+
+message = "111"
+Output
+
+3
+
+
+Solution:
+
+from functools import lru_cache
+class Solution:
+    def solve(self, message):
+        n = len(message)
+
+        @lru_cache(None)
+        def helper(i):
+            if i <= 0:
+                return 1
+
+            res = 0
+            if message[i] != "0":
+                res += helper(i - 1)
+
+            if int(message[i - 1 : i + 1]) in range(0, 27) and message[i - 1] != "0":
+                res += helper(i - 2)
+
+            return res
+
+        return helper(n - 1)
+        
+        

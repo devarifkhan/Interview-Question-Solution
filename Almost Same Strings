@@ -1,0 +1,26 @@
+You are given a list of strings words where each string is of the same length. Return whether there's two strings that differ only in one index.
+
+Constraints
+
+n ≤ 100,000 where n is the total number of characters in words
+Example 1
+Input
+words = ["abcd", "aaaa", "abcf"]
+Output
+True
+
+
+Solution:
+
+
+class Solution:
+    def solve(self, words):
+        s = set()
+        for word in words:
+            for i, w in enumerate(word):
+                if word[:i] + "*" + word[i + 1 :] in s:
+                    return True
+                else:
+                    s.add(word[:i] + "*" + word[i + 1 :])
+
+        return False

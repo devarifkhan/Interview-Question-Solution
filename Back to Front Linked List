@@ -1,0 +1,35 @@
+Given a singly linked list node, reorder it such that we take: the last node, and then the first node, and then the second last node, and then the second node, etc.
+
+Can you do it in \mathcal{O}(1)O(1) space?
+
+Example 1
+Input
+node = 0 → 1 → 2 → 3 → 4
+Output
+4 → 0 → 3 → 1 → 2
+
+Solution:
+
+# class LLNode:
+#     def __init__(self, val, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def solve(self, node):
+        c = node
+        l = []
+        while c:
+            l.append(c.val)
+            c = c.next
+
+        c = node
+        while c and l:
+            c.val = l.pop()
+            c = c.next
+            if c == None:
+                break
+            c.val = l.pop(0)
+            c = c.next
+        return node
+        
+        

@@ -1,0 +1,57 @@
+Given a list of integers nums sorted in ascending order and an integer k, return whether any two elements from the list add up to k. You may not use the same element twice.
+
+Note: Numbers can be negative or 0.
+
+This should be done in O(1)\mathcal{O}(1)O(1) space.
+
+Constraints
+
+    n ≤ 100,000 where n is the length of nums
+
+Example 1
+Input
+
+nums = [1, 3, 5, 8]
+
+k = 6
+
+Output
+
+True
+
+Explanation
+
+We can have 1 + 5 = 6.
+
+
+Solution:
+
+Intuition
+Since the numbers are sorted, we can use the 2 pointer approach.
+Initialize left and right at two ends and based on the value nums[left]+nums[right]<k or >k or ==k, move the pointers accordingly
+Implementation
+The code implementation follows the intuition expressed above.
+
+Time Complexity
+Since we make a single pass through the array: \mathcal{O}(n)O(n)
+
+Space Complexity
+We do not use extra space in the code:\mathcal{O}(1)O(1)
+
+class Solution:
+    def solve(self, nums, k):
+        N = len(nums)
+        if N < 2:
+            return False
+        left, right = 0, N - 1
+        while left < right:
+            if nums[left] + nums[right] == k:
+                return True
+            elif nums[left] + nums[right] < k:
+                left += 1
+            else:
+                right -= 1
+        return False
+        
+        
+        

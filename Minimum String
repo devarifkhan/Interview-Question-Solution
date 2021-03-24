@@ -1,0 +1,26 @@
+You are given two strings s and t of equal length only consisting of lowercase letters. Assuming that you can first rearrange s into any order, return the minimum number of changes needed to turn s into t.
+
+Constraints
+
+    0 ≤ n ≤ 100,000 where n is the length of s and t
+
+Example 1
+Input
+
+s = "ehyoe"
+
+t = "hello"
+
+Output
+
+2
+
+Solution:
+Count the number of occurences of a char in each sting. Then sum up the diff in count of each charecter. Time complexity and space complexity is linear.
+
+from collections import Counter
+class Solution:
+    def solve(self, s, t):
+        return sum((Counter(s)-Counter(t)).values())
+        
+        

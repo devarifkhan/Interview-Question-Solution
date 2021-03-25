@@ -1,0 +1,54 @@
+Implement a data structure with the following methods:
+
+    RangeSum(int[] nums) constructs a new instance with the given nums.
+    total(int i, int j) returns the sum of integers from nums between [i, j). That is, nums[i] + nums[i + 1] + ... + nums[j - 1].
+
+Constraints
+
+    n ≤ 100,000 where n is the length of nums
+    k ≤ 100,000 where k is the number of calls to total
+
+Example 1
+Input
+
+methods = ["constructor", "total", "total"]
+
+arguments = [[[1, 2, 5, 0, 3, 7]], [0, 3], [1, 5]]`
+
+Output
+
+[None, 8, 10]
+
+Explanation
+
+r = RangeSum([1,2,5,0,3,7])
+r.total(0, 3) == 8 # sum([1, 2, 5])
+r.total(1, 5) == 10 # sum([2, 5, 0, 3])
+
+
+
+
+Solution:
+
+Intuition
+Use running sums to quickly calculate the sum of nums[i:j])
+
+Implementation
+If we have a list nums the runnings sum of the i-th element is sum(nums[i]). For convenience we add 0 as the first element of the sums and then sums(nums[i:j]) =  self.sums[j] - self.sums[i]
+
+Time Complexity
+__init__  runs in \mathcal{O}(n)O(n); total runs in \mathcal{O}(1)O(1)
+
+Space Complexity
+\mathcal{O}(n)O(n) to hold the list with running sums
+
+class RangeSum:
+    def __init__(self, nums):
+        self.sums = [0]
+        for x in nums:
+            self.sums.append(x + self.sums[-1])
+
+    def total(self, i, j):
+        return self.sums[j] - self.sums[i]
+
+

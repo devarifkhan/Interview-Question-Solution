@@ -1,0 +1,30 @@
+Given a list of integers nums, order nums by frequency, with most frequent values coming first. If there's a tie in frequency, higher valued numbers should come first.
+
+Constraints
+
+0 ≤ n ≤ 100,000 where n is the length of nums
+Example 1
+Input
+nums = [1, 1, 5, 5, 5, 2, 2, 2, 1, 1]
+Output
+[1, 1, 1, 1, 5, 5, 5, 2, 2, 2]
+
+
+Solution:
+
+Intuition
+The question just defines a custom sort function, so lets do that. 
+For those familiar with the Java and C style comparator, you could do that.
+In python, tuples are sorted from left entry to right entry.
+So, just returning a tuple with frequency as the first 'selector' will sort the values according to the first criteria. 
+If those happen to tie, then our second 'selector', the value, will be used. We wish to have descending order for these values.
+This can be achieved by reverse=True or the following tuple (-count[x], -x).
+
+class Solution:
+    def solve(self, nums):
+        from collections import Counter
+
+        count = Counter(nums)
+        return sorted(nums, key=lambda x: (count[x], x), reverse=True)
+        
+        

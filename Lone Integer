@@ -1,0 +1,43 @@
+You are given a list of integers nums where each integer occurs exactly three times except for one which occurs once. Return the lone integer.
+
+Bonus: solve it in O(1)\mathcal{O}(1)O(1) space.
+
+Constraints
+
+    n ≤ 100,000 where n is length of nums
+
+Example 1
+Input
+
+nums = [2, 2, 2, 9, 5, 5, 5]
+
+Output
+
+9
+
+Solution:
+
+Intuition
+Sort the array and check if the element at each index is equal to the element two indices ahead. If not, then we've found our answer.
+
+Implementation
+We have one edge case at the end of the list, so if we have gone through the entire list and not found our single occurrence, then it is the last number in the list
+
+Time Complexity
+\mathcal{O}(n\log n )O(nlogn) Bottleneck is sorting the array
+
+Space Complexity
+\mathcal{O}(1)O(1) Does not use any additional space.
+
+class Solution:
+    def solve(self, nums):
+
+        nums.sort()
+
+        for i in range(0, len(nums) - 3, 3):
+
+            if nums[i] != nums[i + 2]:
+                return nums[i]
+        return nums[-1]
+
+

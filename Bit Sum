@@ -1,0 +1,56 @@
+You are given a list of integers nums and an integer k. You must perform this operation k times:
+
+Choose any number on the list. In the binary representation of the number, choose a bit that is 0 and make it 1.
+
+Return the minimum possible sum of all the numbers (mod 10 ** 9 + 7) after performing k operations.
+
+Constraints
+
+k < n where n is the length of nums.
+nums[i] ≤ 10 ** 9.
+Example 1
+Input
+nums = [3, 7, 3]
+k = 2
+Output
+21
+Explanation
+In binary representation 3 is 11, and 7 is 111. Since we need to set 2 bits, we can set the lowest 0s of the two 3s such that they become 111. The total sum is then 7 + 7 + 7 = 21.
+
+
+
+
+
+
+Solution:
+Intuition
+Start from rightmost bit, check if the current bit of each number in nums is 0 or not? If 0, increase the change compared with the original sum. After each loop, move current bit to left. Until k = 0, return original sum plus the change compared with the original sum
+
+Implementation
+Calculate sum of all elements in nums, we get base = sum(nums).
+If k > 0, check if the current bit of each number in nums is 0 or not? ( i represents the value of current bit) If 0, add the value to increase. If k = 0, move to step 4.
+Move the position of current bit to the left. Repeat step 2.
+Return base + increase mod 10**9+7.
+
+
+
+
+
+class Solution:
+    def solve(self, nums, k):
+        i = 1
+        increase = 0
+        base = sum(nums)
+        while k:
+            for num in nums:
+                if (num | i) ^ num:
+                    k -= 1
+                    increase += i
+
+                if k == 0:
+                    break
+            i <<= 1
+
+        return (base + increase) % (10 ** 9 + 7)
+        
+        

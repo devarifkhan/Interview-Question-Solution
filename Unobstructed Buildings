@@ -1,0 +1,30 @@
+Unobstructed Buildings
+Easy
+
+You are given a list of integers heights representing building heights. A building heights[i] can see the ocean if every building on its right has shorter height. Return the building indices where you can see the ocean, in ascending order.
+
+Constraints
+
+0 ≤ n ≤ 100,000 where n is the length of heights
+Example 1
+Input
+heights = [1, 5, 5, 2, 3]
+Output
+[2, 4]
+Explanation
+We can see the ocean in building heights[2] and heights[4].
+
+
+
+
+
+Solution:
+
+ans=[]
+highest=-1
+for i in range(len(heights)-1,-1,-1):
+    if heights[i]>highest:
+        ans.append(i)
+        highest=heights[i]
+print(ans[::-1])
+

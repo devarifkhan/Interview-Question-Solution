@@ -1,0 +1,43 @@
+You are given a list of integers nums and integers k and target. Consider an operation where we choose an integer -k ≤ e ≤ k and append it to nums.
+
+Return the minimum number of operations required such that the sum of nums equals to target.
+
+Constraints
+
+n ≤ 100,000 where n is the length of nums
+1 ≤ k < 2 ** 31
+Example 1
+Input
+nums = [2, 1]
+k = 3
+target = 10
+Output
+3
+Explanation
+We can append [3, 3, 1] to get [2, 1, 3, 3, 1] for a total sum of 10.
+
+Solution:
+
+
+Intuition
+We don't need to actually append numbers to the array and recompute the sum since in the end we are only interested in the amount of numbers we need to add to the sum of the given array to reach our target.
+
+We find out the absolute difference (let's call it diff) between the sum of the numbers in the array and the target value. We can use the absolute difference here because for the result it doesn't matter if we add to or substract from the starting sum.
+
+The solution now is simply ⌈diff / k⌉ where ⌈x⌉ means "x rounded up to the next integer".
+
+Implementation
+Instead of creating a variable diff as described above, we can implement everything in one self-explanatory line of code.
+
+Time Complexity
+O(n) because sum iterates through the given array to compute the initial sum.
+
+Space Complexity
+ O(1) because even with large input, we use constant memory.
+
+
+class Solution:
+    def solve(self, nums, k, target):
+        return math.ceil(abs(sum(nums) - target) / k)
+        
+   

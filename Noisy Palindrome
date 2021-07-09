@@ -1,0 +1,45 @@
+You are given a string s containing lowercase and uppercase alphabet characters as well as digits from "0" to "9".
+Return whether s is a palindrome if we only consider the lowercase alphabet characters.
+
+Constraints
+
+0 ≤ n ≤ 100,000 where n is the length of s
+Example 1
+Input
+s = "a92bcbXa"
+Output
+True
+Explanation
+If we only consider the lowercase characters, then s is "abcba" which is a palindrome.
+
+
+Solution:
+
+Intuition
+We can go through the string starting both from the front and the back, skipping characters that are not lowercase letters, and check if we get the same sequence of characters. If yes, then we have a "noisy palindrome".
+
+Implementation
+We define two generators s0 and s1 that go over the lowercase letters of the string in a forward/backward direction, respectively.
+We return True if the two generators yield the same characters, otherwise we return False.
+
+Errata: The condition in the generator comprehensions should be if "a" <= c <= "z" instead of if c in string.ascii_lowercase, to avoid looping over the letters of the alphabet.
+
+Time Complexity
+\mathcal{O}(n)O(n), as we go over the string twice.
+
+Space Complexity
+\mathcal{O}(1)O(1), because we didn't use containers, just generators.
+
+class Solution:
+    def solve(self, s):
+        s0 = (c for c in s if c in string.ascii_lowercase)
+        s1 = (c for c in reversed(s) if c in string.ascii_lowercase)
+        return all(c0 == c1 for c0, c1 in zip(s0, s1))
+
+
+class Solution:
+    def solve(self, s):
+        s0 = (c for c in s if c in string.ascii_lowercase)
+        s1 = (c for c in reversed(s) if c in string.ascii_lowercase)
+        return all(c0 == c1 for c0, c1 in zip(s0, s1))
+

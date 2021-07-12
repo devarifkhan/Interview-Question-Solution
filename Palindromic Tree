@@ -1,0 +1,41 @@
+Given a binary tree root where each node contains a digit from 0-9, return whether its in-order traversal is a palindrome.
+
+Bonus: solve in \mathcal{O}(h)O(h) space where h is height of the tree.
+
+Constraints
+
+n ≤ 100,000 where n is the number of nodes in root
+Example 1
+Input
+Visualize
+root = [5, [1, null, null], [5, [9, null, null], [1, null, null]]]
+Output
+True
+Explanation
+The in-order traversal is [1, 5, 9, 5, 1] which is a palindrome
+
+
+Solution:
+
+# class Tree:
+#     def __init__(self, val, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def solve(self, root):
+
+        lst=[]
+        def recurse(node):
+            if node.left:
+                recurse(node.left)
+            lst.append(node.val)
+            if node.right:
+                recurse(node.right)
+
+        recurse(root)
+        return lst[::-1]==lst
+        
+        
+        
+        

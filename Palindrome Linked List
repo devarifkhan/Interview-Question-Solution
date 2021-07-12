@@ -1,0 +1,36 @@
+Given a singly linked list node whose values are integers, determine whether the linked list forms a palindrome.
+
+Constraints
+
+n ≤ 100,000 where n is the length of node
+Example 1
+Input
+Visualize
+node = [5, 3, 5]
+Output
+True
+Explanation
+5 -> 3 -> 5 is a palindrome.
+
+
+Solution:
+
+
+# class LLNode:
+#     def __init__(self, val, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def solve(self, node):
+        current=node
+        lst=[]
+        while current is not None:
+            lst.append(current.val)
+            current=current.next
+
+        if lst[::-1]==lst:
+            return True
+        else:
+            return False
+        
+        

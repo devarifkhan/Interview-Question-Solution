@@ -1,0 +1,87 @@
+Given a binary tree root, return the number of unique vertical lines that can be drawn such that every node has a line intersecting it. Each left child is angled at 45 degrees to its left, while the right child is angled at 45 degrees to the right.
+
+For example, root and root.left.right are on the same vertical line.
+
+Constraints
+
+1 ≤ n ≤ 100,000 where n is the number of nodes in root
+Example 1
+Input
+Visualize
+root = [1, [2, [3, null, null], null], [4, null, [5, null, null]]]
+Output
+5
+
+
+
+Explaination:
+
+Intuition
+At each node, keep track of its position along the X-Axis.
+
+Implementation
+Each DFS call has 2 params -> (root, x) where x represents the current root's position.
+
+We have a leftmost pos we have encountered (smallest position) and a rightmost pos we have encountered(greatest position).
+
+Per DFS call, update the leftmost and rightmost by comparing them to x.
+
+After traversing the entire tree, return rightmost - leftmost + 1.
+
+Example #1
+      A
+    /   \
+   B     C
+     \
+      D
+initialize left & right = 0
+
+Call dfs(A, 0)
+left is set to min of 0 and 0 -> 0 no change
+right is set to max of 0 and 0 -> 0 no change
+
+Go to left child
+Call dfs(B, -1)
+left is set to min of 0 and -1 -> -1
+right is set to max of 0 and -1 -> 0 no change
+
+Go to right child
+Call dfs(D, 0) recall that D is below A on the same line
+left is set to min of 0 and -1 -> -1 no change
+right is set to max of 0 and 0 -> 0 no change
+
+We recurse back up to B, then back up to A.
+Go to A's right child
+Call dfs(C, 1)
+left is set to min of 1 and -1 -> -1 no change
+right is set to max of 1 and 0 -> 1
+
+Finally left = -1, right = 1
+return right - left + 1 = 1 - (-1) + 1 = 3
+
+Time Complexity
+\mathcal{O}(n)O(n) to traverse all nodes in the tree
+
+Space Complexity
+\mathcal{O}(n)O(n) to store all n nodes in the recursive stack
+
+# class Tree:
+#     def __init__(self, val, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def solve(self, root):
+        left = right = 0
+
+        def dfs(root, x):
+            nonlocal left, right
+            if not root:
+                return
+            left = min(x, left)
+            right = max(x, right)
+            dfs(root.left, x - 1)
+            dfs(root.right, x + 1)
+
+        dfs(root, 0)
+        return right - left + 1

@@ -1,0 +1,54 @@
+Given a two-dimensional integer matrix, sort each of the diagonals descending from left to right in ascending order.
+
+Constraints
+
+n, m ≤ 25 where n and m are the rows and columns of matrix
+Example 1
+Input
+matrix = [
+    [9, 8, 7],
+    [6, 5, 4],
+    [3, 2, 1]
+]
+Output
+[
+    [1, 4, 7],
+    [2, 5, 8],
+    [3, 6, 9]
+]
+
+
+
+Explaination:
+
+We proceed in two steps. In the first step, we create a list for each diagonal and put the values of the matrix in those lists. In the second step, we sort the lists and place the sorted values back into the matrix.
+
+To help us put the elements belonging to the same diagonal in the same list, we notice that all such elements in position (r, c) have the same r - c value.
+
+
+Solution:
+class Solution:
+    def solve(self, matrix):
+        from collections import defaultdict
+
+
+
+
+        diags=defaultdict(list)
+
+        for r,row in enumerate(matrix):
+            for c,col in enumerate(row):
+                diags[r-c].append(col)
+
+        for diag in diags.values():
+            diag.sort(reverse=True)
+            
+        for r,row in enumerate(matrix):
+            for c,v in enumerate(row):
+                
+                matrix[r][c]=diags[r-c].pop()
+
+
+        return matrix
+        
+        

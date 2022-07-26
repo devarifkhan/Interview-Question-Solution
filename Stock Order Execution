@@ -1,0 +1,87 @@
+You are given a two-dimensional list of integers orders. Each element orders[i] contains [price, amount, type] meaning that there's an order to either buy (type = 0) or sell (type = 1) amount number of stocks at price price.
+
+A buy order can be executed if there is a sell order with a price that is less than or equal to the price of the buy order. Similarly, a sell order can be executed if there is a corresponding buy order with a price that is greater than or equal to the price of the sell order. An order should be executed immediately if possible but if it's not possible, you should keep track of this order to be processed at a later time. You should fill the order at the best price for the user. That is, a buy order should execute at the lowest possible price while a sell order should sell at the highest possible price when the order is requested.
+
+Return the total number of stocks that will be executed.
+
+Constraints
+
+0 ≤ n ≤ 200,000 where n is the length of orders
+Example 1
+Input
+orders = [
+    [150, 5, 0],
+    [190, 1, 1],
+    [200, 1, 1],
+    [100, 9, 0],
+    [140, 8, 1],
+    [210, 4, 0]
+]
+Output
+9
+Explanation
+price = 150, amount = 5, BUY
+price = 190, amount = 1, SELL
+price = 200, amount = 1, SELL
+price = 100, amount = 9, BUY
+price = 140, amount = 8, SELL - We match with the 5 stocks at price 150
+price = 210, amount = 4, BUY - We match with the 3 stock at price 140, and 1 stock at price 190
+
+Explaination:
+This is a data structure problem simulating the wordy problem. For each buy order, we try to find the cheapest sell order, and for each sell order, we try to find the most expensive buy order. For symmetry reasons, we will go over the buy order - to get the cheapest order every time, we simply use a min-heap to get the minimum order every time. If there's anything outstanding, we put in on the buy list.
+
+The tricky part of this problem might be to figure out the complexity bound - amortized, for each order, we will only add it to the buy order once, and remove it constant amount of times - for each pair of buy/sell matching, only one O(log N) operation is performed - either we remove the "top" of the heap, and keep going (reducing the size of the heap), or we end there. Amortized, this gives us O(N log N) complexity.
+Implementation
+
+The implementation follows uses "SortedList" - for a more precise bound on the complexity, I would recommend using a heap data structure in your language, as we only ever need to get the min/max, depending on the order type. In this implementation (used during the contest for implementation time consideration), we only use the min/max part of SortedList.
+
+
+
+Solution:
+
+
+class Solution:
+    def solve(self, orders):
+        buy = SortedList()
+        sell = SortedList()
+        executed = 0
+
+        for price, amount, t in orders:
+            if t == 0:
+                # Get the cheapest sell order that we can afford
+                while amount > 0 and len(sell) > 0 and sell[0][0] <= price:
+                    pprice, pamount = sell.pop(0)
+
+                    delta = min(amount, pamount)
+                    executed += delta
+
+                    amount -= delta
+                    pamount -= delta
+
+                    if pamount > 0:
+                        sell.add((pprice, pamount))
+
+                if amount > 0:
+                    buy.add((price, amount))
+            else:
+                # Get the most expensive buy order that we can afford
+                while amount > 0 and len(buy) > 0 and buy[-1][0] >= price:
+                    pprice, pamount = buy.pop(-1)
+
+                    delta = min(amount, pamount)
+                    executed += delta
+
+                    amount -= delta
+                    pamount -= delta
+
+                    if pamount > 0:
+                        buy.add((pprice, pamount))
+
+                if amount > 0:
+                    sell.add((price, amount))
+
+        return executed
+        
+        
+        
+
